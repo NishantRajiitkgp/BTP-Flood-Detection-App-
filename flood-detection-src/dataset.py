@@ -164,7 +164,62 @@ class FloodDataset(Dataset):
 
         # Load sample list
         self.samples = self._load_split(split_file)
+        if len(self.samples) == 0:
+            raise RuntimeError(
+                f"[FloodDataset] {split}: 0 samples loaded from {split_file}. "
+                f"Check that the split file exists and contains recognizable "
+                f"chip names (e.g. 'Bolivia_103757_S1Hand.tif')."
+            )
         print(f"[FloodDataset] {split}: {len(self.samples)} samples loaded")
+
+        # One-time audit of which input dirs are populated. Done per split so the
+        # log is loud at the very start of training rather than failing silently
+        # mid-epoch with constant-fallback aux bands.
+        self._audit_dataset()
+
+    def _audit_dataset(self):
+        """Log file counts per HandLabeled/<band> subdir; warn on missing aux."""
+        required = ("S1Hand", "LabelHand")
+        recommended = ("DEM", "Slope", "HAND", "JRCWaterHand")
+        optional = ("S2Hand",)
+
+        def _count(subdir: str) -> int:
+            p = os.path.join(self.hand_dir, subdir)
+            if not os.path.isdir(p):
+                return -1
+            return sum(1 for f in os.listdir(p) if f.endswith(".tif"))
+
+        print(f"[FloodDataset] {self.split}: dataset audit ({self.hand_dir})")
+        for name in required + recommended + optional:
+            n = _count(name)
+            if n < 0:
+                tag = "MISSING"
+            elif n == 0:
+                tag = "EMPTY  "
+            else:
+                tag = f"{n:5d} "
+            kind = ("required" if name in required
+                    else "recommended" if name in recommended
+                    else "optional")
+            print(f"  - {name:14s} {tag}  [{kind}]")
+
+        # Hard-fail on missing required dirs.
+        for name in required:
+            if _count(name) <= 0:
+                raise RuntimeError(
+                    f"[FloodDataset] required band directory '{name}' is "
+                    f"missing or empty under {self.hand_dir}. "
+                    f"Cannot train without S1Hand + LabelHand."
+                )
+
+        # Loud warning if any aux band is silently missing — this is exactly
+        # the failure that produced the previous conflated-class problem.
+        for name in recommended:
+            if _count(name) <= 0:
+                print(f"  ⚠️  WARNING: '{name}' is missing — "
+                      f"dataloader will silently substitute a constant plane "
+                      f"and the 3-class label can't separate permanent water "
+                      f"properly. Run fetch_aux_bands.py before training.")
 
     @staticmethod
     def _extract_base_id(val: str) -> str | None:

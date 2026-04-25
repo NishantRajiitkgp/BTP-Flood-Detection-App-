@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Re-implementation of the **DeepSARFlood** flood-segmentation pipeline (IIT Delhi 2025) on the **Sen1Floods11** dataset. All training/inference code lives in `flood-detection-src/`. The original notebook is `NoteBook.ipynb`; the paper PDF is `IIT_Delhi.pdf`. Trained checkpoints live in `checkpoints-v2/`. Raw imagery lives under `BTP-SenData/` (HandLabeled + WeaklyLabeled S1/S2/Label/JRCWaterHand subdirs).
+Re-implementation of the **DeepSARFlood** flood-segmentation pipeline (IIT Delhi 2025) on the **Sen1Floods11** dataset. All training/inference code lives in `flood-detection-src/`. The original notebook is `NoteBook.ipynb`; the paper PDF is `IIT_Delhi.pdf`. Trained checkpoints live in `checkpoints-v2/`.
+
+**Data layout.** Local working copy is `BTP-SenData/` (S1Hand, S2Hand, LabelHand, JRCWaterHand only — DEM/Slope/HAND missing). The canonical 7-band dataset used for training on Kaggle is `final-sendata/` (`/kaggle/input/datasets/yash10chawla/final-sendata`), which contains all of `HandLabeled/{S1Hand, S2Hand, LabelHand, JRCWaterHand, DEM, Slope, HAND}` plus `splits/{flood_train,valid,test,bolivia}_data.csv`. Pass that directory as `--data_root` and `<data_root>/splits` as `--splits_root`.
 
 ## Common commands
 
