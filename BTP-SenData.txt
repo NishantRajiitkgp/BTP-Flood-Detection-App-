@@ -1,0 +1,1797 @@
+.
+├── HandLabeled
+│   ├── JRCWaterHand
+│   │   ├── Bolivia_103757_JRCWaterHand.tif
+│   │   ├── Bolivia_129334_JRCWaterHand.tif
+│   │   ├── Bolivia_195474_JRCWaterHand.tif
+│   │   ├── Bolivia_23014_JRCWaterHand.tif
+│   │   ├── Bolivia_233925_JRCWaterHand.tif
+│   │   ├── Bolivia_242570_JRCWaterHand.tif
+│   │   ├── Bolivia_290290_JRCWaterHand.tif
+│   │   ├── Bolivia_294583_JRCWaterHand.tif
+│   │   ├── Bolivia_312675_JRCWaterHand.tif
+│   │   ├── Bolivia_314919_JRCWaterHand.tif
+│   │   ├── Bolivia_360519_JRCWaterHand.tif
+│   │   ├── Bolivia_379434_JRCWaterHand.tif
+│   │   ├── Bolivia_432776_JRCWaterHand.tif
+│   │   ├── Bolivia_60373_JRCWaterHand.tif
+│   │   ├── Bolivia_76104_JRCWaterHand.tif
+│   │   ├── Ghana_103272_JRCWaterHand.tif
+│   │   ├── Ghana_1033830_JRCWaterHand.tif
+│   │   ├── Ghana_1078550_JRCWaterHand.tif
+│   │   ├── Ghana_1089161_JRCWaterHand.tif
+│   │   ├── Ghana_11745_JRCWaterHand.tif
+│   │   ├── Ghana_124834_JRCWaterHand.tif
+│   │   ├── Ghana_128663_JRCWaterHand.tif
+│   │   ├── Ghana_132163_JRCWaterHand.tif
+│   │   ├── Ghana_134751_JRCWaterHand.tif
+│   │   ├── Ghana_135389_JRCWaterHand.tif
+│   │   ├── Ghana_141271_JRCWaterHand.tif
+│   │   ├── Ghana_141910_JRCWaterHand.tif
+│   │   ├── Ghana_142312_JRCWaterHand.tif
+│   │   ├── Ghana_144050_JRCWaterHand.tif
+│   │   ├── Ghana_146222_JRCWaterHand.tif
+│   │   ├── Ghana_147015_JRCWaterHand.tif
+│   │   ├── Ghana_154838_JRCWaterHand.tif
+│   │   ├── Ghana_156478_JRCWaterHand.tif
+│   │   ├── Ghana_161233_JRCWaterHand.tif
+│   │   ├── Ghana_167233_JRCWaterHand.tif
+│   │   ├── Ghana_168875_JRCWaterHand.tif
+│   │   ├── Ghana_187318_JRCWaterHand.tif
+│   │   ├── Ghana_194723_JRCWaterHand.tif
+│   │   ├── Ghana_234935_JRCWaterHand.tif
+│   │   ├── Ghana_247288_JRCWaterHand.tif
+│   │   ├── Ghana_24858_JRCWaterHand.tif
+│   │   ├── Ghana_26376_JRCWaterHand.tif
+│   │   ├── Ghana_264787_JRCWaterHand.tif
+│   │   ├── Ghana_277_JRCWaterHand.tif
+│   │   ├── Ghana_308249_JRCWaterHand.tif
+│   │   ├── Ghana_313799_JRCWaterHand.tif
+│   │   ├── Ghana_319168_JRCWaterHand.tif
+│   │   ├── Ghana_359826_JRCWaterHand.tif
+│   │   ├── Ghana_362274_JRCWaterHand.tif
+│   │   ├── Ghana_406026_JRCWaterHand.tif
+│   │   ├── Ghana_45911_JRCWaterHand.tif
+│   │   ├── Ghana_495107_JRCWaterHand.tif
+│   │   ├── Ghana_49890_JRCWaterHand.tif
+│   │   ├── Ghana_5079_JRCWaterHand.tif
+│   │   ├── Ghana_53713_JRCWaterHand.tif
+│   │   ├── Ghana_597288_JRCWaterHand.tif
+│   │   ├── Ghana_61925_JRCWaterHand.tif
+│   │   ├── Ghana_7496_JRCWaterHand.tif
+│   │   ├── Ghana_8090_JRCWaterHand.tif
+│   │   ├── Ghana_83200_JRCWaterHand.tif
+│   │   ├── Ghana_83483_JRCWaterHand.tif
+│   │   ├── Ghana_866994_JRCWaterHand.tif
+│   │   ├── Ghana_868803_JRCWaterHand.tif
+│   │   ├── Ghana_887131_JRCWaterHand.tif
+│   │   ├── Ghana_895194_JRCWaterHand.tif
+│   │   ├── Ghana_953791_JRCWaterHand.tif
+│   │   ├── Ghana_97059_JRCWaterHand.tif
+│   │   ├── Ghana_97516_JRCWaterHand.tif
+│   │   ├── India_1017769_JRCWaterHand.tif
+│   │   ├── India_1018317_JRCWaterHand.tif
+│   │   ├── India_1018327_JRCWaterHand.tif
+│   │   ├── India_103447_JRCWaterHand.tif
+│   │   ├── India_1050276_JRCWaterHand.tif
+│   │   ├── India_1068117_JRCWaterHand.tif
+│   │   ├── India_1072277_JRCWaterHand.tif
+│   │   ├── India_118868_JRCWaterHand.tif
+│   │   ├── India_135434_JRCWaterHand.tif
+│   │   ├── India_136196_JRCWaterHand.tif
+│   │   ├── India_164336_JRCWaterHand.tif
+│   │   ├── India_166709_JRCWaterHand.tif
+│   │   ├── India_177319_JRCWaterHand.tif
+│   │   ├── India_179238_JRCWaterHand.tif
+│   │   ├── India_180633_JRCWaterHand.tif
+│   │   ├── India_207862_JRCWaterHand.tif
+│   │   ├── India_244057_JRCWaterHand.tif
+│   │   ├── India_25540_JRCWaterHand.tif
+│   │   ├── India_265762_JRCWaterHand.tif
+│   │   ├── India_273873_JRCWaterHand.tif
+│   │   ├── India_285297_JRCWaterHand.tif
+│   │   ├── India_287642_JRCWaterHand.tif
+│   │   ├── India_324254_JRCWaterHand.tif
+│   │   ├── India_373039_JRCWaterHand.tif
+│   │   ├── India_383430_JRCWaterHand.tif
+│   │   ├── India_391908_JRCWaterHand.tif
+│   │   ├── India_399883_JRCWaterHand.tif
+│   │   ├── India_44475_JRCWaterHand.tif
+│   │   ├── India_500266_JRCWaterHand.tif
+│   │   ├── India_533192_JRCWaterHand.tif
+│   │   ├── India_534470_JRCWaterHand.tif
+│   │   ├── India_56450_JRCWaterHand.tif
+│   │   ├── India_566697_JRCWaterHand.tif
+│   │   ├── India_570384_JRCWaterHand.tif
+│   │   ├── India_591317_JRCWaterHand.tif
+│   │   ├── India_591549_JRCWaterHand.tif
+│   │   ├── India_592446_JRCWaterHand.tif
+│   │   ├── India_59460_JRCWaterHand.tif
+│   │   ├── India_624341_JRCWaterHand.tif
+│   │   ├── India_631692_JRCWaterHand.tif
+│   │   ├── India_652725_JRCWaterHand.tif
+│   │   ├── India_664410_JRCWaterHand.tif
+│   │   ├── India_691027_JRCWaterHand.tif
+│   │   ├── India_698338_JRCWaterHand.tif
+│   │   ├── India_70352_JRCWaterHand.tif
+│   │   ├── India_707886_JRCWaterHand.tif
+│   │   ├── India_73419_JRCWaterHand.tif
+│   │   ├── India_747970_JRCWaterHand.tif
+│   │   ├── India_747992_JRCWaterHand.tif
+│   │   ├── India_764946_JRCWaterHand.tif
+│   │   ├── India_769408_JRCWaterHand.tif
+│   │   ├── India_772630_JRCWaterHand.tif
+│   │   ├── India_773682_JRCWaterHand.tif
+│   │   ├── India_774689_JRCWaterHand.tif
+│   │   ├── India_79637_JRCWaterHand.tif
+│   │   ├── India_80221_JRCWaterHand.tif
+│   │   ├── India_804466_JRCWaterHand.tif
+│   │   ├── India_828067_JRCWaterHand.tif
+│   │   ├── India_833266_JRCWaterHand.tif
+│   │   ├── India_842775_JRCWaterHand.tif
+│   │   ├── India_869358_JRCWaterHand.tif
+│   │   ├── India_900498_JRCWaterHand.tif
+│   │   ├── India_91379_JRCWaterHand.tif
+│   │   ├── India_943439_JRCWaterHand.tif
+│   │   ├── India_952728_JRCWaterHand.tif
+│   │   ├── India_956930_JRCWaterHand.tif
+│   │   ├── India_979278_JRCWaterHand.tif
+│   │   ├── India_981708_JRCWaterHand.tif
+│   │   ├── Mekong_1111068_JRCWaterHand.tif
+│   │   ├── Mekong_1149855_JRCWaterHand.tif
+│   │   ├── Mekong_1191208_JRCWaterHand.tif
+│   │   ├── Mekong_119477_JRCWaterHand.tif
+│   │   ├── Mekong_1248200_JRCWaterHand.tif
+│   │   ├── Mekong_1282475_JRCWaterHand.tif
+│   │   ├── Mekong_1395593_JRCWaterHand.tif
+│   │   ├── Mekong_1396181_JRCWaterHand.tif
+│   │   ├── Mekong_1413877_JRCWaterHand.tif
+│   │   ├── Mekong_1439641_JRCWaterHand.tif
+│   │   ├── Mekong_1443339_JRCWaterHand.tif
+│   │   ├── Mekong_16233_JRCWaterHand.tif
+│   │   ├── Mekong_213094_JRCWaterHand.tif
+│   │   ├── Mekong_221789_JRCWaterHand.tif
+│   │   ├── Mekong_254910_JRCWaterHand.tif
+│   │   ├── Mekong_269835_JRCWaterHand.tif
+│   │   ├── Mekong_293769_JRCWaterHand.tif
+│   │   ├── Mekong_333434_JRCWaterHand.tif
+│   │   ├── Mekong_342411_JRCWaterHand.tif
+│   │   ├── Mekong_382276_JRCWaterHand.tif
+│   │   ├── Mekong_424793_JRCWaterHand.tif
+│   │   ├── Mekong_45934_JRCWaterHand.tif
+│   │   ├── Mekong_474783_JRCWaterHand.tif
+│   │   ├── Mekong_52610_JRCWaterHand.tif
+│   │   ├── Mekong_596495_JRCWaterHand.tif
+│   │   ├── Mekong_774566_JRCWaterHand.tif
+│   │   ├── Mekong_846007_JRCWaterHand.tif
+│   │   ├── Mekong_922373_JRCWaterHand.tif
+│   │   ├── Mekong_977338_JRCWaterHand.tif
+│   │   ├── Mekong_98310_JRCWaterHand.tif
+│   │   ├── Nigeria_1095404_JRCWaterHand.tif
+│   │   ├── Nigeria_143329_JRCWaterHand.tif
+│   │   ├── Nigeria_22088_JRCWaterHand.tif
+│   │   ├── Nigeria_225131_JRCWaterHand.tif
+│   │   ├── Nigeria_31096_JRCWaterHand.tif
+│   │   ├── Nigeria_35845_JRCWaterHand.tif
+│   │   ├── Nigeria_417184_JRCWaterHand.tif
+│   │   ├── Nigeria_439488_JRCWaterHand.tif
+│   │   ├── Nigeria_529525_JRCWaterHand.tif
+│   │   ├── Nigeria_598959_JRCWaterHand.tif
+│   │   ├── Nigeria_600295_JRCWaterHand.tif
+│   │   ├── Nigeria_707067_JRCWaterHand.tif
+│   │   ├── Nigeria_78061_JRCWaterHand.tif
+│   │   ├── Nigeria_812045_JRCWaterHand.tif
+│   │   ├── Nigeria_81933_JRCWaterHand.tif
+│   │   ├── Nigeria_820924_JRCWaterHand.tif
+│   │   ├── Nigeria_952958_JRCWaterHand.tif
+│   │   ├── Nigeria_984831_JRCWaterHand.tif
+│   │   ├── Pakistan_1027214_JRCWaterHand.tif
+│   │   ├── Pakistan_1036366_JRCWaterHand.tif
+│   │   ├── Pakistan_132143_JRCWaterHand.tif
+│   │   ├── Pakistan_167553_JRCWaterHand.tif
+│   │   ├── Pakistan_210595_JRCWaterHand.tif
+│   │   ├── Pakistan_211386_JRCWaterHand.tif
+│   │   ├── Pakistan_246510_JRCWaterHand.tif
+│   │   ├── Pakistan_246718_JRCWaterHand.tif
+│   │   ├── Pakistan_336228_JRCWaterHand.tif
+│   │   ├── Pakistan_35915_JRCWaterHand.tif
+│   │   ├── Pakistan_366265_JRCWaterHand.tif
+│   │   ├── Pakistan_401863_JRCWaterHand.tif
+│   │   ├── Pakistan_43105_JRCWaterHand.tif
+│   │   ├── Pakistan_474121_JRCWaterHand.tif
+│   │   ├── Pakistan_528249_JRCWaterHand.tif
+│   │   ├── Pakistan_548910_JRCWaterHand.tif
+│   │   ├── Pakistan_65724_JRCWaterHand.tif
+│   │   ├── Pakistan_664885_JRCWaterHand.tif
+│   │   ├── Pakistan_667363_JRCWaterHand.tif
+│   │   ├── Pakistan_694942_JRCWaterHand.tif
+│   │   ├── Pakistan_70625_JRCWaterHand.tif
+│   │   ├── Pakistan_712873_JRCWaterHand.tif
+│   │   ├── Pakistan_740461_JRCWaterHand.tif
+│   │   ├── Pakistan_760290_JRCWaterHand.tif
+│   │   ├── Pakistan_849790_JRCWaterHand.tif
+│   │   ├── Pakistan_909806_JRCWaterHand.tif
+│   │   ├── Pakistan_94095_JRCWaterHand.tif
+│   │   ├── Pakistan_9684_JRCWaterHand.tif
+│   │   ├── Paraguay_1019808_JRCWaterHand.tif
+│   │   ├── Paraguay_1029042_JRCWaterHand.tif
+│   │   ├── Paraguay_1029191_JRCWaterHand.tif
+│   │   ├── Paraguay_1056717_JRCWaterHand.tif
+│   │   ├── Paraguay_1076204_JRCWaterHand.tif
+│   │   ├── Paraguay_11869_JRCWaterHand.tif
+│   │   ├── Paraguay_126224_JRCWaterHand.tif
+│   │   ├── Paraguay_12870_JRCWaterHand.tif
+│   │   ├── Paraguay_148318_JRCWaterHand.tif
+│   │   ├── Paraguay_149787_JRCWaterHand.tif
+│   │   ├── Paraguay_149830_JRCWaterHand.tif
+│   │   ├── Paraguay_153941_JRCWaterHand.tif
+│   │   ├── Paraguay_172476_JRCWaterHand.tif
+│   │   ├── Paraguay_179624_JRCWaterHand.tif
+│   │   ├── Paraguay_191503_JRCWaterHand.tif
+│   │   ├── Paraguay_198534_JRCWaterHand.tif
+│   │   ├── Paraguay_205585_JRCWaterHand.tif
+│   │   ├── Paraguay_212687_JRCWaterHand.tif
+│   │   ├── Paraguay_215904_JRCWaterHand.tif
+│   │   ├── Paraguay_224845_JRCWaterHand.tif
+│   │   ├── Paraguay_225187_JRCWaterHand.tif
+│   │   ├── Paraguay_232281_JRCWaterHand.tif
+│   │   ├── Paraguay_24341_JRCWaterHand.tif
+│   │   ├── Paraguay_246154_JRCWaterHand.tif
+│   │   ├── Paraguay_247656_JRCWaterHand.tif
+│   │   ├── Paraguay_252217_JRCWaterHand.tif
+│   │   ├── Paraguay_271769_JRCWaterHand.tif
+│   │   ├── Paraguay_280900_JRCWaterHand.tif
+│   │   ├── Paraguay_284928_JRCWaterHand.tif
+│   │   ├── Paraguay_305760_JRCWaterHand.tif
+│   │   ├── Paraguay_339807_JRCWaterHand.tif
+│   │   ├── Paraguay_34417_JRCWaterHand.tif
+│   │   ├── Paraguay_36015_JRCWaterHand.tif
+│   │   ├── Paraguay_36146_JRCWaterHand.tif
+│   │   ├── Paraguay_403081_JRCWaterHand.tif
+│   │   ├── Paraguay_40936_JRCWaterHand.tif
+│   │   ├── Paraguay_44682_JRCWaterHand.tif
+│   │   ├── Paraguay_470303_JRCWaterHand.tif
+│   │   ├── Paraguay_482517_JRCWaterHand.tif
+│   │   ├── Paraguay_48673_JRCWaterHand.tif
+│   │   ├── Paraguay_511199_JRCWaterHand.tif
+│   │   ├── Paraguay_54421_JRCWaterHand.tif
+│   │   ├── Paraguay_581976_JRCWaterHand.tif
+│   │   ├── Paraguay_59731_JRCWaterHand.tif
+│   │   ├── Paraguay_605682_JRCWaterHand.tif
+│   │   ├── Paraguay_62897_JRCWaterHand.tif
+│   │   ├── Paraguay_648632_JRCWaterHand.tif
+│   │   ├── Paraguay_651904_JRCWaterHand.tif
+│   │   ├── Paraguay_657443_JRCWaterHand.tif
+│   │   ├── Paraguay_683296_JRCWaterHand.tif
+│   │   ├── Paraguay_721886_JRCWaterHand.tif
+│   │   ├── Paraguay_76868_JRCWaterHand.tif
+│   │   ├── Paraguay_7894_JRCWaterHand.tif
+│   │   ├── Paraguay_790830_JRCWaterHand.tif
+│   │   ├── Paraguay_791364_JRCWaterHand.tif
+│   │   ├── Paraguay_792268_JRCWaterHand.tif
+│   │   ├── Paraguay_795075_JRCWaterHand.tif
+│   │   ├── Paraguay_80102_JRCWaterHand.tif
+│   │   ├── Paraguay_822142_JRCWaterHand.tif
+│   │   ├── Paraguay_868895_JRCWaterHand.tif
+│   │   ├── Paraguay_892933_JRCWaterHand.tif
+│   │   ├── Paraguay_896458_JRCWaterHand.tif
+│   │   ├── Paraguay_913449_JRCWaterHand.tif
+│   │   ├── Paraguay_921838_JRCWaterHand.tif
+│   │   ├── Paraguay_934240_JRCWaterHand.tif
+│   │   ├── Paraguay_989230_JRCWaterHand.tif
+│   │   ├── Paraguay_997480_JRCWaterHand.tif
+│   │   ├── Somalia_1068756_JRCWaterHand.tif
+│   │   ├── Somalia_1087508_JRCWaterHand.tif
+│   │   ├── Somalia_12849_JRCWaterHand.tif
+│   │   ├── Somalia_166342_JRCWaterHand.tif
+│   │   ├── Somalia_167787_JRCWaterHand.tif
+│   │   ├── Somalia_195014_JRCWaterHand.tif
+│   │   ├── Somalia_205466_JRCWaterHand.tif
+│   │   ├── Somalia_230192_JRCWaterHand.tif
+│   │   ├── Somalia_256539_JRCWaterHand.tif
+│   │   ├── Somalia_295782_JRCWaterHand.tif
+│   │   ├── Somalia_322855_JRCWaterHand.tif
+│   │   ├── Somalia_32375_JRCWaterHand.tif
+│   │   ├── Somalia_371421_JRCWaterHand.tif
+│   │   ├── Somalia_60129_JRCWaterHand.tif
+│   │   ├── Somalia_61368_JRCWaterHand.tif
+│   │   ├── Somalia_626316_JRCWaterHand.tif
+│   │   ├── Somalia_649376_JRCWaterHand.tif
+│   │   ├── Somalia_685158_JRCWaterHand.tif
+│   │   ├── Somalia_699062_JRCWaterHand.tif
+│   │   ├── Somalia_7931_JRCWaterHand.tif
+│   │   ├── Somalia_886726_JRCWaterHand.tif
+│   │   ├── Somalia_93023_JRCWaterHand.tif
+│   │   ├── Somalia_94102_JRCWaterHand.tif
+│   │   ├── Somalia_970508_JRCWaterHand.tif
+│   │   ├── Somalia_989553_JRCWaterHand.tif
+│   │   ├── Somalia_992457_JRCWaterHand.tif
+│   │   ├── Spain_1167260_JRCWaterHand.tif
+│   │   ├── Spain_1199913_JRCWaterHand.tif
+│   │   ├── Spain_2472849_JRCWaterHand.tif
+│   │   ├── Spain_2523247_JRCWaterHand.tif
+│   │   ├── Spain_2594119_JRCWaterHand.tif
+│   │   ├── Spain_2938657_JRCWaterHand.tif
+│   │   ├── Spain_3285448_JRCWaterHand.tif
+│   │   ├── Spain_337094_JRCWaterHand.tif
+│   │   ├── Spain_4282030_JRCWaterHand.tif
+│   │   ├── Spain_4915752_JRCWaterHand.tif
+│   │   ├── Spain_5650136_JRCWaterHand.tif
+│   │   ├── Spain_5678382_JRCWaterHand.tif
+│   │   ├── Spain_5816638_JRCWaterHand.tif
+│   │   ├── Spain_5923267_JRCWaterHand.tif
+│   │   ├── Spain_6095801_JRCWaterHand.tif
+│   │   ├── Spain_6199994_JRCWaterHand.tif
+│   │   ├── Spain_6537196_JRCWaterHand.tif
+│   │   ├── Spain_6860600_JRCWaterHand.tif
+│   │   ├── Spain_716716_JRCWaterHand.tif
+│   │   ├── Spain_7370579_JRCWaterHand.tif
+│   │   ├── Spain_7387658_JRCWaterHand.tif
+│   │   ├── Spain_7558720_JRCWaterHand.tif
+│   │   ├── Spain_7604243_JRCWaterHand.tif
+│   │   ├── Spain_7786924_JRCWaterHand.tif
+│   │   ├── Spain_7856615_JRCWaterHand.tif
+│   │   ├── Spain_8104659_JRCWaterHand.tif
+│   │   ├── Spain_8154154_JRCWaterHand.tif
+│   │   ├── Spain_8199661_JRCWaterHand.tif
+│   │   ├── Spain_8372658_JRCWaterHand.tif
+│   │   ├── Spain_8565131_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_101973_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_1038087_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_1049830_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_117737_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_120804_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_132922_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_135713_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_14484_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_152185_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_163406_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_178753_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_233609_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_236030_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_236628_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_249079_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_31559_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_321316_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_377277_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_400518_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_450918_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_49764_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_52223_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_523539_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_534068_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_551926_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_55568_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_579082_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_612594_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_63307_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_649970_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_653336_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_713926_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_748447_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_845821_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_847275_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_849649_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_85652_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_883641_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_916628_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_922192_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_92824_JRCWaterHand.tif
+│   │   ├── Sri-Lanka_956740_JRCWaterHand.tif
+│   │   ├── USA_1010394_JRCWaterHand.tif
+│   │   ├── USA_1039203_JRCWaterHand.tif
+│   │   ├── USA_1049586_JRCWaterHand.tif
+│   │   ├── USA_1068362_JRCWaterHand.tif
+│   │   ├── USA_1082482_JRCWaterHand.tif
+│   │   ├── USA_11422_JRCWaterHand.tif
+│   │   ├── USA_114964_JRCWaterHand.tif
+│   │   ├── USA_115033_JRCWaterHand.tif
+│   │   ├── USA_170264_JRCWaterHand.tif
+│   │   ├── USA_179917_JRCWaterHand.tif
+│   │   ├── USA_181263_JRCWaterHand.tif
+│   │   ├── USA_181503_JRCWaterHand.tif
+│   │   ├── USA_19225_JRCWaterHand.tif
+│   │   ├── USA_198411_JRCWaterHand.tif
+│   │   ├── USA_211406_JRCWaterHand.tif
+│   │   ├── USA_217598_JRCWaterHand.tif
+│   │   ├── USA_224165_JRCWaterHand.tif
+│   │   ├── USA_225017_JRCWaterHand.tif
+│   │   ├── USA_231124_JRCWaterHand.tif
+│   │   ├── USA_232060_JRCWaterHand.tif
+│   │   ├── USA_251323_JRCWaterHand.tif
+│   │   ├── USA_260929_JRCWaterHand.tif
+│   │   ├── USA_275372_JRCWaterHand.tif
+│   │   ├── USA_308150_JRCWaterHand.tif
+│   │   ├── USA_347609_JRCWaterHand.tif
+│   │   ├── USA_348639_JRCWaterHand.tif
+│   │   ├── USA_350244_JRCWaterHand.tif
+│   │   ├── USA_354981_JRCWaterHand.tif
+│   │   ├── USA_366607_JRCWaterHand.tif
+│   │   ├── USA_375183_JRCWaterHand.tif
+│   │   ├── USA_387945_JRCWaterHand.tif
+│   │   ├── USA_430764_JRCWaterHand.tif
+│   │   ├── USA_438959_JRCWaterHand.tif
+│   │   ├── USA_486103_JRCWaterHand.tif
+│   │   ├── USA_504150_JRCWaterHand.tif
+│   │   ├── USA_519181_JRCWaterHand.tif
+│   │   ├── USA_527077_JRCWaterHand.tif
+│   │   ├── USA_58086_JRCWaterHand.tif
+│   │   ├── USA_595451_JRCWaterHand.tif
+│   │   ├── USA_604222_JRCWaterHand.tif
+│   │   ├── USA_605492_JRCWaterHand.tif
+│   │   ├── USA_638521_JRCWaterHand.tif
+│   │   ├── USA_646878_JRCWaterHand.tif
+│   │   ├── USA_652955_JRCWaterHand.tif
+│   │   ├── USA_655230_JRCWaterHand.tif
+│   │   ├── USA_66026_JRCWaterHand.tif
+│   │   ├── USA_664261_JRCWaterHand.tif
+│   │   ├── USA_66511_JRCWaterHand.tif
+│   │   ├── USA_670826_JRCWaterHand.tif
+│   │   ├── USA_67102_JRCWaterHand.tif
+│   │   ├── USA_693819_JRCWaterHand.tif
+│   │   ├── USA_741073_JRCWaterHand.tif
+│   │   ├── USA_741178_JRCWaterHand.tif
+│   │   ├── USA_758178_JRCWaterHand.tif
+│   │   ├── USA_761032_JRCWaterHand.tif
+│   │   ├── USA_770353_JRCWaterHand.tif
+│   │   ├── USA_778194_JRCWaterHand.tif
+│   │   ├── USA_788696_JRCWaterHand.tif
+│   │   ├── USA_806273_JRCWaterHand.tif
+│   │   ├── USA_826217_JRCWaterHand.tif
+│   │   ├── USA_831672_JRCWaterHand.tif
+│   │   ├── USA_84195_JRCWaterHand.tif
+│   │   ├── USA_86502_JRCWaterHand.tif
+│   │   ├── USA_905409_JRCWaterHand.tif
+│   │   ├── USA_908474_JRCWaterHand.tif
+│   │   ├── USA_933610_JRCWaterHand.tif
+│   │   ├── USA_955053_JRCWaterHand.tif
+│   │   ├── USA_986268_JRCWaterHand.tif
+│   │   └── USA_994009_JRCWaterHand.tif
+│   ├── LabelHand
+│   │   ├── Bolivia_103757_LabelHand.tif
+│   │   ├── Bolivia_129334_LabelHand.tif
+│   │   ├── Bolivia_195474_LabelHand.tif
+│   │   ├── Bolivia_23014_LabelHand.tif
+│   │   ├── Bolivia_233925_LabelHand.tif
+│   │   ├── Bolivia_242570_LabelHand.tif
+│   │   ├── Bolivia_290290_LabelHand.tif
+│   │   ├── Bolivia_294583_LabelHand.tif
+│   │   ├── Bolivia_312675_LabelHand.tif
+│   │   ├── Bolivia_314919_LabelHand.tif
+│   │   ├── Bolivia_360519_LabelHand.tif
+│   │   ├── Bolivia_379434_LabelHand.tif
+│   │   ├── Bolivia_432776_LabelHand.tif
+│   │   ├── Bolivia_60373_LabelHand.tif
+│   │   ├── Bolivia_76104_LabelHand.tif
+│   │   ├── Ghana_103272_LabelHand.tif
+│   │   ├── Ghana_1033830_LabelHand.tif
+│   │   ├── Ghana_1078550_LabelHand.tif
+│   │   ├── Ghana_1089161_LabelHand.tif
+│   │   ├── Ghana_11745_LabelHand.tif
+│   │   ├── Ghana_124834_LabelHand.tif
+│   │   ├── Ghana_128663_LabelHand.tif
+│   │   ├── Ghana_132163_LabelHand.tif
+│   │   ├── Ghana_134751_LabelHand.tif
+│   │   ├── Ghana_135389_LabelHand.tif
+│   │   ├── Ghana_141271_LabelHand.tif
+│   │   ├── Ghana_141910_LabelHand.tif
+│   │   ├── Ghana_142312_LabelHand.tif
+│   │   ├── Ghana_144050_LabelHand.tif
+│   │   ├── Ghana_146222_LabelHand.tif
+│   │   ├── Ghana_147015_LabelHand.tif
+│   │   ├── Ghana_154838_LabelHand.tif
+│   │   ├── Ghana_156478_LabelHand.tif
+│   │   ├── Ghana_161233_LabelHand.tif
+│   │   ├── Ghana_167233_LabelHand.tif
+│   │   ├── Ghana_168875_LabelHand.tif
+│   │   ├── Ghana_187318_LabelHand.tif
+│   │   ├── Ghana_194723_LabelHand.tif
+│   │   ├── Ghana_234935_LabelHand.tif
+│   │   ├── Ghana_247288_LabelHand.tif
+│   │   ├── Ghana_24858_LabelHand.tif
+│   │   ├── Ghana_26376_LabelHand.tif
+│   │   ├── Ghana_264787_LabelHand.tif
+│   │   ├── Ghana_277_LabelHand.tif
+│   │   ├── Ghana_308249_LabelHand.tif
+│   │   ├── Ghana_313799_LabelHand.tif
+│   │   ├── Ghana_319168_LabelHand.tif
+│   │   ├── Ghana_359826_LabelHand.tif
+│   │   ├── Ghana_362274_LabelHand.tif
+│   │   ├── Ghana_406026_LabelHand.tif
+│   │   ├── Ghana_45911_LabelHand.tif
+│   │   ├── Ghana_495107_LabelHand.tif
+│   │   ├── Ghana_49890_LabelHand.tif
+│   │   ├── Ghana_5079_LabelHand.tif
+│   │   ├── Ghana_53713_LabelHand.tif
+│   │   ├── Ghana_597288_LabelHand.tif
+│   │   ├── Ghana_61925_LabelHand.tif
+│   │   ├── Ghana_7496_LabelHand.tif
+│   │   ├── Ghana_8090_LabelHand.tif
+│   │   ├── Ghana_83200_LabelHand.tif
+│   │   ├── Ghana_83483_LabelHand.tif
+│   │   ├── Ghana_866994_LabelHand.tif
+│   │   ├── Ghana_868803_LabelHand.tif
+│   │   ├── Ghana_887131_LabelHand.tif
+│   │   ├── Ghana_895194_LabelHand.tif
+│   │   ├── Ghana_953791_LabelHand.tif
+│   │   ├── Ghana_97059_LabelHand.tif
+│   │   ├── Ghana_97516_LabelHand.tif
+│   │   ├── India_1017769_LabelHand.tif
+│   │   ├── India_1018317_LabelHand.tif
+│   │   ├── India_1018327_LabelHand.tif
+│   │   ├── India_103447_LabelHand.tif
+│   │   ├── India_1050276_LabelHand.tif
+│   │   ├── India_1068117_LabelHand.tif
+│   │   ├── India_1072277_LabelHand.tif
+│   │   ├── India_118868_LabelHand.tif
+│   │   ├── India_135434_LabelHand.tif
+│   │   ├── India_136196_LabelHand.tif
+│   │   ├── India_164336_LabelHand.tif
+│   │   ├── India_166709_LabelHand.tif
+│   │   ├── India_177319_LabelHand.tif
+│   │   ├── India_179238_LabelHand.tif
+│   │   ├── India_180633_LabelHand.tif
+│   │   ├── India_207862_LabelHand.tif
+│   │   ├── India_244057_LabelHand.tif
+│   │   ├── India_25540_LabelHand.tif
+│   │   ├── India_265762_LabelHand.tif
+│   │   ├── India_273873_LabelHand.tif
+│   │   ├── India_285297_LabelHand.tif
+│   │   ├── India_287642_LabelHand.tif
+│   │   ├── India_324254_LabelHand.tif
+│   │   ├── India_373039_LabelHand.tif
+│   │   ├── India_383430_LabelHand.tif
+│   │   ├── India_391908_LabelHand.tif
+│   │   ├── India_399883_LabelHand.tif
+│   │   ├── India_44475_LabelHand.tif
+│   │   ├── India_500266_LabelHand.tif
+│   │   ├── India_533192_LabelHand.tif
+│   │   ├── India_534470_LabelHand.tif
+│   │   ├── India_56450_LabelHand.tif
+│   │   ├── India_566697_LabelHand.tif
+│   │   ├── India_570384_LabelHand.tif
+│   │   ├── India_591317_LabelHand.tif
+│   │   ├── India_591549_LabelHand.tif
+│   │   ├── India_592446_LabelHand.tif
+│   │   ├── India_59460_LabelHand.tif
+│   │   ├── India_624341_LabelHand.tif
+│   │   ├── India_631692_LabelHand.tif
+│   │   ├── India_652725_LabelHand.tif
+│   │   ├── India_664410_LabelHand.tif
+│   │   ├── India_691027_LabelHand.tif
+│   │   ├── India_698338_LabelHand.tif
+│   │   ├── India_70352_LabelHand.tif
+│   │   ├── India_707886_LabelHand.tif
+│   │   ├── India_73419_LabelHand.tif
+│   │   ├── India_747970_LabelHand.tif
+│   │   ├── India_747992_LabelHand.tif
+│   │   ├── India_764946_LabelHand.tif
+│   │   ├── India_769408_LabelHand.tif
+│   │   ├── India_772630_LabelHand.tif
+│   │   ├── India_773682_LabelHand.tif
+│   │   ├── India_774689_LabelHand.tif
+│   │   ├── India_79637_LabelHand.tif
+│   │   ├── India_80221_LabelHand.tif
+│   │   ├── India_804466_LabelHand.tif
+│   │   ├── India_828067_LabelHand.tif
+│   │   ├── India_833266_LabelHand.tif
+│   │   ├── India_842775_LabelHand.tif
+│   │   ├── India_869358_LabelHand.tif
+│   │   ├── India_900498_LabelHand.tif
+│   │   ├── India_91379_LabelHand.tif
+│   │   ├── India_943439_LabelHand.tif
+│   │   ├── India_952728_LabelHand.tif
+│   │   ├── India_956930_LabelHand.tif
+│   │   ├── India_979278_LabelHand.tif
+│   │   ├── India_981708_LabelHand.tif
+│   │   ├── Mekong_1111068_LabelHand.tif
+│   │   ├── Mekong_1149855_LabelHand.tif
+│   │   ├── Mekong_1191208_LabelHand.tif
+│   │   ├── Mekong_119477_LabelHand.tif
+│   │   ├── Mekong_1248200_LabelHand.tif
+│   │   ├── Mekong_1282475_LabelHand.tif
+│   │   ├── Mekong_1395593_LabelHand.tif
+│   │   ├── Mekong_1396181_LabelHand.tif
+│   │   ├── Mekong_1413877_LabelHand.tif
+│   │   ├── Mekong_1439641_LabelHand.tif
+│   │   ├── Mekong_1443339_LabelHand.tif
+│   │   ├── Mekong_16233_LabelHand.tif
+│   │   ├── Mekong_213094_LabelHand.tif
+│   │   ├── Mekong_221789_LabelHand.tif
+│   │   ├── Mekong_254910_LabelHand.tif
+│   │   ├── Mekong_269835_LabelHand.tif
+│   │   ├── Mekong_293769_LabelHand.tif
+│   │   ├── Mekong_333434_LabelHand.tif
+│   │   ├── Mekong_342411_LabelHand.tif
+│   │   ├── Mekong_382276_LabelHand.tif
+│   │   ├── Mekong_424793_LabelHand.tif
+│   │   ├── Mekong_45934_LabelHand.tif
+│   │   ├── Mekong_474783_LabelHand.tif
+│   │   ├── Mekong_52610_LabelHand.tif
+│   │   ├── Mekong_596495_LabelHand.tif
+│   │   ├── Mekong_774566_LabelHand.tif
+│   │   ├── Mekong_846007_LabelHand.tif
+│   │   ├── Mekong_922373_LabelHand.tif
+│   │   ├── Mekong_977338_LabelHand.tif
+│   │   ├── Mekong_98310_LabelHand.tif
+│   │   ├── Nigeria_1095404_LabelHand.tif
+│   │   ├── Nigeria_143329_LabelHand.tif
+│   │   ├── Nigeria_22088_LabelHand.tif
+│   │   ├── Nigeria_225131_LabelHand.tif
+│   │   ├── Nigeria_31096_LabelHand.tif
+│   │   ├── Nigeria_35845_LabelHand.tif
+│   │   ├── Nigeria_417184_LabelHand.tif
+│   │   ├── Nigeria_439488_LabelHand.tif
+│   │   ├── Nigeria_529525_LabelHand.tif
+│   │   ├── Nigeria_598959_LabelHand.tif
+│   │   ├── Nigeria_600295_LabelHand.tif
+│   │   ├── Nigeria_707067_LabelHand.tif
+│   │   ├── Nigeria_78061_LabelHand.tif
+│   │   ├── Nigeria_812045_LabelHand.tif
+│   │   ├── Nigeria_81933_LabelHand.tif
+│   │   ├── Nigeria_820924_LabelHand.tif
+│   │   ├── Nigeria_952958_LabelHand.tif
+│   │   ├── Nigeria_984831_LabelHand.tif
+│   │   ├── Pakistan_1027214_LabelHand.tif
+│   │   ├── Pakistan_1036366_LabelHand.tif
+│   │   ├── Pakistan_132143_LabelHand.tif
+│   │   ├── Pakistan_167553_LabelHand.tif
+│   │   ├── Pakistan_210595_LabelHand.tif
+│   │   ├── Pakistan_211386_LabelHand.tif
+│   │   ├── Pakistan_246510_LabelHand.tif
+│   │   ├── Pakistan_246718_LabelHand.tif
+│   │   ├── Pakistan_336228_LabelHand.tif
+│   │   ├── Pakistan_35915_LabelHand.tif
+│   │   ├── Pakistan_366265_LabelHand.tif
+│   │   ├── Pakistan_401863_LabelHand.tif
+│   │   ├── Pakistan_43105_LabelHand.tif
+│   │   ├── Pakistan_474121_LabelHand.tif
+│   │   ├── Pakistan_528249_LabelHand.tif
+│   │   ├── Pakistan_548910_LabelHand.tif
+│   │   ├── Pakistan_65724_LabelHand.tif
+│   │   ├── Pakistan_664885_LabelHand.tif
+│   │   ├── Pakistan_667363_LabelHand.tif
+│   │   ├── Pakistan_694942_LabelHand.tif
+│   │   ├── Pakistan_70625_LabelHand.tif
+│   │   ├── Pakistan_712873_LabelHand.tif
+│   │   ├── Pakistan_740461_LabelHand.tif
+│   │   ├── Pakistan_760290_LabelHand.tif
+│   │   ├── Pakistan_849790_LabelHand.tif
+│   │   ├── Pakistan_909806_LabelHand.tif
+│   │   ├── Pakistan_94095_LabelHand.tif
+│   │   ├── Pakistan_9684_LabelHand.tif
+│   │   ├── Paraguay_1019808_LabelHand.tif
+│   │   ├── Paraguay_1029042_LabelHand.tif
+│   │   ├── Paraguay_1029191_LabelHand.tif
+│   │   ├── Paraguay_1056717_LabelHand.tif
+│   │   ├── Paraguay_1076204_LabelHand.tif
+│   │   ├── Paraguay_11869_LabelHand.tif
+│   │   ├── Paraguay_126224_LabelHand.tif
+│   │   ├── Paraguay_12870_LabelHand.tif
+│   │   ├── Paraguay_148318_LabelHand.tif
+│   │   ├── Paraguay_149787_LabelHand.tif
+│   │   ├── Paraguay_149830_LabelHand.tif
+│   │   ├── Paraguay_153941_LabelHand.tif
+│   │   ├── Paraguay_172476_LabelHand.tif
+│   │   ├── Paraguay_179624_LabelHand.tif
+│   │   ├── Paraguay_191503_LabelHand.tif
+│   │   ├── Paraguay_198534_LabelHand.tif
+│   │   ├── Paraguay_205585_LabelHand.tif
+│   │   ├── Paraguay_212687_LabelHand.tif
+│   │   ├── Paraguay_215904_LabelHand.tif
+│   │   ├── Paraguay_224845_LabelHand.tif
+│   │   ├── Paraguay_225187_LabelHand.tif
+│   │   ├── Paraguay_232281_LabelHand.tif
+│   │   ├── Paraguay_24341_LabelHand.tif
+│   │   ├── Paraguay_246154_LabelHand.tif
+│   │   ├── Paraguay_247656_LabelHand.tif
+│   │   ├── Paraguay_252217_LabelHand.tif
+│   │   ├── Paraguay_271769_LabelHand.tif
+│   │   ├── Paraguay_280900_LabelHand.tif
+│   │   ├── Paraguay_284928_LabelHand.tif
+│   │   ├── Paraguay_305760_LabelHand.tif
+│   │   ├── Paraguay_339807_LabelHand.tif
+│   │   ├── Paraguay_34417_LabelHand.tif
+│   │   ├── Paraguay_36015_LabelHand.tif
+│   │   ├── Paraguay_36146_LabelHand.tif
+│   │   ├── Paraguay_403081_LabelHand.tif
+│   │   ├── Paraguay_40936_LabelHand.tif
+│   │   ├── Paraguay_44682_LabelHand.tif
+│   │   ├── Paraguay_470303_LabelHand.tif
+│   │   ├── Paraguay_482517_LabelHand.tif
+│   │   ├── Paraguay_48673_LabelHand.tif
+│   │   ├── Paraguay_511199_LabelHand.tif
+│   │   ├── Paraguay_54421_LabelHand.tif
+│   │   ├── Paraguay_581976_LabelHand.tif
+│   │   ├── Paraguay_59731_LabelHand.tif
+│   │   ├── Paraguay_605682_LabelHand.tif
+│   │   ├── Paraguay_62897_LabelHand.tif
+│   │   ├── Paraguay_648632_LabelHand.tif
+│   │   ├── Paraguay_651904_LabelHand.tif
+│   │   ├── Paraguay_657443_LabelHand.tif
+│   │   ├── Paraguay_683296_LabelHand.tif
+│   │   ├── Paraguay_721886_LabelHand.tif
+│   │   ├── Paraguay_76868_LabelHand.tif
+│   │   ├── Paraguay_7894_LabelHand.tif
+│   │   ├── Paraguay_790830_LabelHand.tif
+│   │   ├── Paraguay_791364_LabelHand.tif
+│   │   ├── Paraguay_792268_LabelHand.tif
+│   │   ├── Paraguay_795075_LabelHand.tif
+│   │   ├── Paraguay_80102_LabelHand.tif
+│   │   ├── Paraguay_822142_LabelHand.tif
+│   │   ├── Paraguay_868895_LabelHand.tif
+│   │   ├── Paraguay_892933_LabelHand.tif
+│   │   ├── Paraguay_896458_LabelHand.tif
+│   │   ├── Paraguay_913449_LabelHand.tif
+│   │   ├── Paraguay_921838_LabelHand.tif
+│   │   ├── Paraguay_934240_LabelHand.tif
+│   │   ├── Paraguay_989230_LabelHand.tif
+│   │   ├── Paraguay_997480_LabelHand.tif
+│   │   ├── Somalia_1068756_LabelHand.tif
+│   │   ├── Somalia_1087508_LabelHand.tif
+│   │   ├── Somalia_12849_LabelHand.tif
+│   │   ├── Somalia_166342_LabelHand.tif
+│   │   ├── Somalia_167787_LabelHand.tif
+│   │   ├── Somalia_195014_LabelHand.tif
+│   │   ├── Somalia_205466_LabelHand.tif
+│   │   ├── Somalia_230192_LabelHand.tif
+│   │   ├── Somalia_256539_LabelHand.tif
+│   │   ├── Somalia_295782_LabelHand.tif
+│   │   ├── Somalia_322855_LabelHand.tif
+│   │   ├── Somalia_32375_LabelHand.tif
+│   │   ├── Somalia_371421_LabelHand.tif
+│   │   ├── Somalia_60129_LabelHand.tif
+│   │   ├── Somalia_61368_LabelHand.tif
+│   │   ├── Somalia_626316_LabelHand.tif
+│   │   ├── Somalia_649376_LabelHand.tif
+│   │   ├── Somalia_685158_LabelHand.tif
+│   │   ├── Somalia_699062_LabelHand.tif
+│   │   ├── Somalia_7931_LabelHand.tif
+│   │   ├── Somalia_886726_LabelHand.tif
+│   │   ├── Somalia_93023_LabelHand.tif
+│   │   ├── Somalia_94102_LabelHand.tif
+│   │   ├── Somalia_970508_LabelHand.tif
+│   │   ├── Somalia_989553_LabelHand.tif
+│   │   ├── Somalia_992457_LabelHand.tif
+│   │   ├── Spain_1167260_LabelHand.tif
+│   │   ├── Spain_1199913_LabelHand.tif
+│   │   ├── Spain_2472849_LabelHand.tif
+│   │   ├── Spain_2523247_LabelHand.tif
+│   │   ├── Spain_2594119_LabelHand.tif
+│   │   ├── Spain_2938657_LabelHand.tif
+│   │   ├── Spain_3285448_LabelHand.tif
+│   │   ├── Spain_337094_LabelHand.tif
+│   │   ├── Spain_4282030_LabelHand.tif
+│   │   ├── Spain_4915752_LabelHand.tif
+│   │   ├── Spain_5650136_LabelHand.tif
+│   │   ├── Spain_5678382_LabelHand.tif
+│   │   ├── Spain_5816638_LabelHand.tif
+│   │   ├── Spain_5923267_LabelHand.tif
+│   │   ├── Spain_6095801_LabelHand.tif
+│   │   ├── Spain_6199994_LabelHand.tif
+│   │   ├── Spain_6537196_LabelHand.tif
+│   │   ├── Spain_6860600_LabelHand.tif
+│   │   ├── Spain_716716_LabelHand.tif
+│   │   ├── Spain_7370579_LabelHand.tif
+│   │   ├── Spain_7387658_LabelHand.tif
+│   │   ├── Spain_7558720_LabelHand.tif
+│   │   ├── Spain_7604243_LabelHand.tif
+│   │   ├── Spain_7786924_LabelHand.tif
+│   │   ├── Spain_7856615_LabelHand.tif
+│   │   ├── Spain_8104659_LabelHand.tif
+│   │   ├── Spain_8154154_LabelHand.tif
+│   │   ├── Spain_8199661_LabelHand.tif
+│   │   ├── Spain_8372658_LabelHand.tif
+│   │   ├── Spain_8565131_LabelHand.tif
+│   │   ├── Sri-Lanka_101973_LabelHand.tif
+│   │   ├── Sri-Lanka_1038087_LabelHand.tif
+│   │   ├── Sri-Lanka_1049830_LabelHand.tif
+│   │   ├── Sri-Lanka_117737_LabelHand.tif
+│   │   ├── Sri-Lanka_120804_LabelHand.tif
+│   │   ├── Sri-Lanka_132922_LabelHand.tif
+│   │   ├── Sri-Lanka_135713_LabelHand.tif
+│   │   ├── Sri-Lanka_14484_LabelHand.tif
+│   │   ├── Sri-Lanka_152185_LabelHand.tif
+│   │   ├── Sri-Lanka_163406_LabelHand.tif
+│   │   ├── Sri-Lanka_178753_LabelHand.tif
+│   │   ├── Sri-Lanka_233609_LabelHand.tif
+│   │   ├── Sri-Lanka_236030_LabelHand.tif
+│   │   ├── Sri-Lanka_236628_LabelHand.tif
+│   │   ├── Sri-Lanka_249079_LabelHand.tif
+│   │   ├── Sri-Lanka_31559_LabelHand.tif
+│   │   ├── Sri-Lanka_321316_LabelHand.tif
+│   │   ├── Sri-Lanka_377277_LabelHand.tif
+│   │   ├── Sri-Lanka_400518_LabelHand.tif
+│   │   ├── Sri-Lanka_450918_LabelHand.tif
+│   │   ├── Sri-Lanka_49764_LabelHand.tif
+│   │   ├── Sri-Lanka_52223_LabelHand.tif
+│   │   ├── Sri-Lanka_523539_LabelHand.tif
+│   │   ├── Sri-Lanka_534068_LabelHand.tif
+│   │   ├── Sri-Lanka_551926_LabelHand.tif
+│   │   ├── Sri-Lanka_55568_LabelHand.tif
+│   │   ├── Sri-Lanka_579082_LabelHand.tif
+│   │   ├── Sri-Lanka_612594_LabelHand.tif
+│   │   ├── Sri-Lanka_63307_LabelHand.tif
+│   │   ├── Sri-Lanka_649970_LabelHand.tif
+│   │   ├── Sri-Lanka_653336_LabelHand.tif
+│   │   ├── Sri-Lanka_713926_LabelHand.tif
+│   │   ├── Sri-Lanka_748447_LabelHand.tif
+│   │   ├── Sri-Lanka_845821_LabelHand.tif
+│   │   ├── Sri-Lanka_847275_LabelHand.tif
+│   │   ├── Sri-Lanka_849649_LabelHand.tif
+│   │   ├── Sri-Lanka_85652_LabelHand.tif
+│   │   ├── Sri-Lanka_883641_LabelHand.tif
+│   │   ├── Sri-Lanka_916628_LabelHand.tif
+│   │   ├── Sri-Lanka_922192_LabelHand.tif
+│   │   ├── Sri-Lanka_92824_LabelHand.tif
+│   │   ├── Sri-Lanka_956740_LabelHand.tif
+│   │   ├── USA_1010394_LabelHand.tif
+│   │   ├── USA_1039203_LabelHand.tif
+│   │   ├── USA_1049586_LabelHand.tif
+│   │   ├── USA_1068362_LabelHand.tif
+│   │   ├── USA_1082482_LabelHand.tif
+│   │   ├── USA_11422_LabelHand.tif
+│   │   ├── USA_114964_LabelHand.tif
+│   │   ├── USA_115033_LabelHand.tif
+│   │   ├── USA_170264_LabelHand.tif
+│   │   ├── USA_179917_LabelHand.tif
+│   │   ├── USA_181263_LabelHand.tif
+│   │   ├── USA_181503_LabelHand.tif
+│   │   ├── USA_19225_LabelHand.tif
+│   │   ├── USA_198411_LabelHand.tif
+│   │   ├── USA_211406_LabelHand.tif
+│   │   ├── USA_217598_LabelHand.tif
+│   │   ├── USA_224165_LabelHand.tif
+│   │   ├── USA_225017_LabelHand.tif
+│   │   ├── USA_231124_LabelHand.tif
+│   │   ├── USA_232060_LabelHand.tif
+│   │   ├── USA_251323_LabelHand.tif
+│   │   ├── USA_260929_LabelHand.tif
+│   │   ├── USA_275372_LabelHand.tif
+│   │   ├── USA_308150_LabelHand.tif
+│   │   ├── USA_347609_LabelHand.tif
+│   │   ├── USA_348639_LabelHand.tif
+│   │   ├── USA_350244_LabelHand.tif
+│   │   ├── USA_354981_LabelHand.tif
+│   │   ├── USA_366607_LabelHand.tif
+│   │   ├── USA_375183_LabelHand.tif
+│   │   ├── USA_387945_LabelHand.tif
+│   │   ├── USA_430764_LabelHand.tif
+│   │   ├── USA_438959_LabelHand.tif
+│   │   ├── USA_486103_LabelHand.tif
+│   │   ├── USA_504150_LabelHand.tif
+│   │   ├── USA_519181_LabelHand.tif
+│   │   ├── USA_527077_LabelHand.tif
+│   │   ├── USA_58086_LabelHand.tif
+│   │   ├── USA_595451_LabelHand.tif
+│   │   ├── USA_604222_LabelHand.tif
+│   │   ├── USA_605492_LabelHand.tif
+│   │   ├── USA_638521_LabelHand.tif
+│   │   ├── USA_646878_LabelHand.tif
+│   │   ├── USA_652955_LabelHand.tif
+│   │   ├── USA_655230_LabelHand.tif
+│   │   ├── USA_66026_LabelHand.tif
+│   │   ├── USA_664261_LabelHand.tif
+│   │   ├── USA_66511_LabelHand.tif
+│   │   ├── USA_670826_LabelHand.tif
+│   │   ├── USA_67102_LabelHand.tif
+│   │   ├── USA_693819_LabelHand.tif
+│   │   ├── USA_741073_LabelHand.tif
+│   │   ├── USA_741178_LabelHand.tif
+│   │   ├── USA_758178_LabelHand.tif
+│   │   ├── USA_761032_LabelHand.tif
+│   │   ├── USA_770353_LabelHand.tif
+│   │   ├── USA_778194_LabelHand.tif
+│   │   ├── USA_788696_LabelHand.tif
+│   │   ├── USA_806273_LabelHand.tif
+│   │   ├── USA_826217_LabelHand.tif
+│   │   ├── USA_831672_LabelHand.tif
+│   │   ├── USA_84195_LabelHand.tif
+│   │   ├── USA_86502_LabelHand.tif
+│   │   ├── USA_905409_LabelHand.tif
+│   │   ├── USA_908474_LabelHand.tif
+│   │   ├── USA_933610_LabelHand.tif
+│   │   ├── USA_955053_LabelHand.tif
+│   │   ├── USA_986268_LabelHand.tif
+│   │   └── USA_994009_LabelHand.tif
+│   ├── S1Hand
+│   │   ├── Bolivia_103757_S1Hand.tif
+│   │   ├── Bolivia_129334_S1Hand.tif
+│   │   ├── Bolivia_195474_S1Hand.tif
+│   │   ├── Bolivia_23014_S1Hand.tif
+│   │   ├── Bolivia_233925_S1Hand.tif
+│   │   ├── Bolivia_242570_S1Hand.tif
+│   │   ├── Bolivia_290290_S1Hand.tif
+│   │   ├── Bolivia_294583_S1Hand.tif
+│   │   ├── Bolivia_312675_S1Hand.tif
+│   │   ├── Bolivia_314919_S1Hand.tif
+│   │   ├── Bolivia_360519_S1Hand.tif
+│   │   ├── Bolivia_379434_S1Hand.tif
+│   │   ├── Bolivia_432776_S1Hand.tif
+│   │   ├── Bolivia_60373_S1Hand.tif
+│   │   ├── Bolivia_76104_S1Hand.tif
+│   │   ├── Ghana_103272_S1Hand.tif
+│   │   ├── Ghana_1033830_S1Hand.tif
+│   │   ├── Ghana_1078550_S1Hand.tif
+│   │   ├── Ghana_1089161_S1Hand.tif
+│   │   ├── Ghana_11745_S1Hand.tif
+│   │   ├── Ghana_124834_S1Hand.tif
+│   │   ├── Ghana_128663_S1Hand.tif
+│   │   ├── Ghana_132163_S1Hand.tif
+│   │   ├── Ghana_134751_S1Hand.tif
+│   │   ├── Ghana_135389_S1Hand.tif
+│   │   ├── Ghana_141271_S1Hand.tif
+│   │   ├── Ghana_141910_S1Hand.tif
+│   │   ├── Ghana_142312_S1Hand.tif
+│   │   ├── Ghana_144050_S1Hand.tif
+│   │   ├── Ghana_146222_S1Hand.tif
+│   │   ├── Ghana_147015_S1Hand.tif
+│   │   ├── Ghana_154838_S1Hand.tif
+│   │   ├── Ghana_156478_S1Hand.tif
+│   │   ├── Ghana_161233_S1Hand.tif
+│   │   ├── Ghana_167233_S1Hand.tif
+│   │   ├── Ghana_168875_S1Hand.tif
+│   │   ├── Ghana_187318_S1Hand.tif
+│   │   ├── Ghana_194723_S1Hand.tif
+│   │   ├── Ghana_234935_S1Hand.tif
+│   │   ├── Ghana_247288_S1Hand.tif
+│   │   ├── Ghana_24858_S1Hand.tif
+│   │   ├── Ghana_26376_S1Hand.tif
+│   │   ├── Ghana_264787_S1Hand.tif
+│   │   ├── Ghana_277_S1Hand.tif
+│   │   ├── Ghana_308249_S1Hand.tif
+│   │   ├── Ghana_313799_S1Hand.tif
+│   │   ├── Ghana_319168_S1Hand.tif
+│   │   ├── Ghana_359826_S1Hand.tif
+│   │   ├── Ghana_362274_S1Hand.tif
+│   │   ├── Ghana_406026_S1Hand.tif
+│   │   ├── Ghana_45911_S1Hand.tif
+│   │   ├── Ghana_495107_S1Hand.tif
+│   │   ├── Ghana_49890_S1Hand.tif
+│   │   ├── Ghana_5079_S1Hand.tif
+│   │   ├── Ghana_53713_S1Hand.tif
+│   │   ├── Ghana_597288_S1Hand.tif
+│   │   ├── Ghana_61925_S1Hand.tif
+│   │   ├── Ghana_7496_S1Hand.tif
+│   │   ├── Ghana_8090_S1Hand.tif
+│   │   ├── Ghana_83200_S1Hand.tif
+│   │   ├── Ghana_83483_S1Hand.tif
+│   │   ├── Ghana_866994_S1Hand.tif
+│   │   ├── Ghana_868803_S1Hand.tif
+│   │   ├── Ghana_887131_S1Hand.tif
+│   │   ├── Ghana_895194_S1Hand.tif
+│   │   ├── Ghana_953791_S1Hand.tif
+│   │   ├── Ghana_97059_S1Hand.tif
+│   │   ├── Ghana_97516_S1Hand.tif
+│   │   ├── India_1017769_S1Hand.tif
+│   │   ├── India_1018317_S1Hand.tif
+│   │   ├── India_1018327_S1Hand.tif
+│   │   ├── India_103447_S1Hand.tif
+│   │   ├── India_1050276_S1Hand.tif
+│   │   ├── India_1068117_S1Hand.tif
+│   │   ├── India_1072277_S1Hand.tif
+│   │   ├── India_118868_S1Hand.tif
+│   │   ├── India_135434_S1Hand.tif
+│   │   ├── India_136196_S1Hand.tif
+│   │   ├── India_164336_S1Hand.tif
+│   │   ├── India_166709_S1Hand.tif
+│   │   ├── India_177319_S1Hand.tif
+│   │   ├── India_179238_S1Hand.tif
+│   │   ├── India_180633_S1Hand.tif
+│   │   ├── India_207862_S1Hand.tif
+│   │   ├── India_244057_S1Hand.tif
+│   │   ├── India_25540_S1Hand.tif
+│   │   ├── India_265762_S1Hand.tif
+│   │   ├── India_273873_S1Hand.tif
+│   │   ├── India_285297_S1Hand.tif
+│   │   ├── India_287642_S1Hand.tif
+│   │   ├── India_324254_S1Hand.tif
+│   │   ├── India_373039_S1Hand.tif
+│   │   ├── India_383430_S1Hand.tif
+│   │   ├── India_391908_S1Hand.tif
+│   │   ├── India_399883_S1Hand.tif
+│   │   ├── India_44475_S1Hand.tif
+│   │   ├── India_500266_S1Hand.tif
+│   │   ├── India_533192_S1Hand.tif
+│   │   ├── India_534470_S1Hand.tif
+│   │   ├── India_56450_S1Hand.tif
+│   │   ├── India_566697_S1Hand.tif
+│   │   ├── India_570384_S1Hand.tif
+│   │   ├── India_591317_S1Hand.tif
+│   │   ├── India_591549_S1Hand.tif
+│   │   ├── India_592446_S1Hand.tif
+│   │   ├── India_59460_S1Hand.tif
+│   │   ├── India_624341_S1Hand.tif
+│   │   ├── India_631692_S1Hand.tif
+│   │   ├── India_652725_S1Hand.tif
+│   │   ├── India_664410_S1Hand.tif
+│   │   ├── India_691027_S1Hand.tif
+│   │   ├── India_698338_S1Hand.tif
+│   │   ├── India_70352_S1Hand.tif
+│   │   ├── India_707886_S1Hand.tif
+│   │   ├── India_73419_S1Hand.tif
+│   │   ├── India_747970_S1Hand.tif
+│   │   ├── India_747992_S1Hand.tif
+│   │   ├── India_764946_S1Hand.tif
+│   │   ├── India_769408_S1Hand.tif
+│   │   ├── India_772630_S1Hand.tif
+│   │   ├── India_773682_S1Hand.tif
+│   │   ├── India_774689_S1Hand.tif
+│   │   ├── India_79637_S1Hand.tif
+│   │   ├── India_80221_S1Hand.tif
+│   │   ├── India_804466_S1Hand.tif
+│   │   ├── India_828067_S1Hand.tif
+│   │   ├── India_833266_S1Hand.tif
+│   │   ├── India_842775_S1Hand.tif
+│   │   ├── India_869358_S1Hand.tif
+│   │   ├── India_900498_S1Hand.tif
+│   │   ├── India_91379_S1Hand.tif
+│   │   ├── India_943439_S1Hand.tif
+│   │   ├── India_952728_S1Hand.tif
+│   │   ├── India_956930_S1Hand.tif
+│   │   ├── India_979278_S1Hand.tif
+│   │   ├── India_981708_S1Hand.tif
+│   │   ├── Mekong_1111068_S1Hand.tif
+│   │   ├── Mekong_1149855_S1Hand.tif
+│   │   ├── Mekong_1191208_S1Hand.tif
+│   │   ├── Mekong_119477_S1Hand.tif
+│   │   ├── Mekong_1248200_S1Hand.tif
+│   │   ├── Mekong_1282475_S1Hand.tif
+│   │   ├── Mekong_1395593_S1Hand.tif
+│   │   ├── Mekong_1396181_S1Hand.tif
+│   │   ├── Mekong_1413877_S1Hand.tif
+│   │   ├── Mekong_1439641_S1Hand.tif
+│   │   ├── Mekong_1443339_S1Hand.tif
+│   │   ├── Mekong_16233_S1Hand.tif
+│   │   ├── Mekong_213094_S1Hand.tif
+│   │   ├── Mekong_221789_S1Hand.tif
+│   │   ├── Mekong_254910_S1Hand.tif
+│   │   ├── Mekong_269835_S1Hand.tif
+│   │   ├── Mekong_293769_S1Hand.tif
+│   │   ├── Mekong_333434_S1Hand.tif
+│   │   ├── Mekong_342411_S1Hand.tif
+│   │   ├── Mekong_382276_S1Hand.tif
+│   │   ├── Mekong_424793_S1Hand.tif
+│   │   ├── Mekong_45934_S1Hand.tif
+│   │   ├── Mekong_474783_S1Hand.tif
+│   │   ├── Mekong_52610_S1Hand.tif
+│   │   ├── Mekong_596495_S1Hand.tif
+│   │   ├── Mekong_774566_S1Hand.tif
+│   │   ├── Mekong_846007_S1Hand.tif
+│   │   ├── Mekong_922373_S1Hand.tif
+│   │   ├── Mekong_977338_S1Hand.tif
+│   │   ├── Mekong_98310_S1Hand.tif
+│   │   ├── Nigeria_1095404_S1Hand.tif
+│   │   ├── Nigeria_143329_S1Hand.tif
+│   │   ├── Nigeria_22088_S1Hand.tif
+│   │   ├── Nigeria_225131_S1Hand.tif
+│   │   ├── Nigeria_31096_S1Hand.tif
+│   │   ├── Nigeria_35845_S1Hand.tif
+│   │   ├── Nigeria_417184_S1Hand.tif
+│   │   ├── Nigeria_439488_S1Hand.tif
+│   │   ├── Nigeria_529525_S1Hand.tif
+│   │   ├── Nigeria_598959_S1Hand.tif
+│   │   ├── Nigeria_600295_S1Hand.tif
+│   │   ├── Nigeria_707067_S1Hand.tif
+│   │   ├── Nigeria_78061_S1Hand.tif
+│   │   ├── Nigeria_812045_S1Hand.tif
+│   │   ├── Nigeria_81933_S1Hand.tif
+│   │   ├── Nigeria_820924_S1Hand.tif
+│   │   ├── Nigeria_952958_S1Hand.tif
+│   │   ├── Nigeria_984831_S1Hand.tif
+│   │   ├── Pakistan_1027214_S1Hand.tif
+│   │   ├── Pakistan_1036366_S1Hand.tif
+│   │   ├── Pakistan_132143_S1Hand.tif
+│   │   ├── Pakistan_167553_S1Hand.tif
+│   │   ├── Pakistan_210595_S1Hand.tif
+│   │   ├── Pakistan_211386_S1Hand.tif
+│   │   ├── Pakistan_246510_S1Hand.tif
+│   │   ├── Pakistan_246718_S1Hand.tif
+│   │   ├── Pakistan_336228_S1Hand.tif
+│   │   ├── Pakistan_35915_S1Hand.tif
+│   │   ├── Pakistan_366265_S1Hand.tif
+│   │   ├── Pakistan_401863_S1Hand.tif
+│   │   ├── Pakistan_43105_S1Hand.tif
+│   │   ├── Pakistan_474121_S1Hand.tif
+│   │   ├── Pakistan_528249_S1Hand.tif
+│   │   ├── Pakistan_548910_S1Hand.tif
+│   │   ├── Pakistan_65724_S1Hand.tif
+│   │   ├── Pakistan_664885_S1Hand.tif
+│   │   ├── Pakistan_667363_S1Hand.tif
+│   │   ├── Pakistan_694942_S1Hand.tif
+│   │   ├── Pakistan_70625_S1Hand.tif
+│   │   ├── Pakistan_712873_S1Hand.tif
+│   │   ├── Pakistan_740461_S1Hand.tif
+│   │   ├── Pakistan_760290_S1Hand.tif
+│   │   ├── Pakistan_849790_S1Hand.tif
+│   │   ├── Pakistan_909806_S1Hand.tif
+│   │   ├── Pakistan_94095_S1Hand.tif
+│   │   ├── Pakistan_9684_S1Hand.tif
+│   │   ├── Paraguay_1019808_S1Hand.tif
+│   │   ├── Paraguay_1029042_S1Hand.tif
+│   │   ├── Paraguay_1029191_S1Hand.tif
+│   │   ├── Paraguay_1056717_S1Hand.tif
+│   │   ├── Paraguay_1076204_S1Hand.tif
+│   │   ├── Paraguay_11869_S1Hand.tif
+│   │   ├── Paraguay_126224_S1Hand.tif
+│   │   ├── Paraguay_12870_S1Hand.tif
+│   │   ├── Paraguay_148318_S1Hand.tif
+│   │   ├── Paraguay_149787_S1Hand.tif
+│   │   ├── Paraguay_149830_S1Hand.tif
+│   │   ├── Paraguay_153941_S1Hand.tif
+│   │   ├── Paraguay_172476_S1Hand.tif
+│   │   ├── Paraguay_179624_S1Hand.tif
+│   │   ├── Paraguay_191503_S1Hand.tif
+│   │   ├── Paraguay_198534_S1Hand.tif
+│   │   ├── Paraguay_205585_S1Hand.tif
+│   │   ├── Paraguay_212687_S1Hand.tif
+│   │   ├── Paraguay_215904_S1Hand.tif
+│   │   ├── Paraguay_224845_S1Hand.tif
+│   │   ├── Paraguay_225187_S1Hand.tif
+│   │   ├── Paraguay_232281_S1Hand.tif
+│   │   ├── Paraguay_24341_S1Hand.tif
+│   │   ├── Paraguay_246154_S1Hand.tif
+│   │   ├── Paraguay_247656_S1Hand.tif
+│   │   ├── Paraguay_252217_S1Hand.tif
+│   │   ├── Paraguay_271769_S1Hand.tif
+│   │   ├── Paraguay_280900_S1Hand.tif
+│   │   ├── Paraguay_284928_S1Hand.tif
+│   │   ├── Paraguay_305760_S1Hand.tif
+│   │   ├── Paraguay_339807_S1Hand.tif
+│   │   ├── Paraguay_34417_S1Hand.tif
+│   │   ├── Paraguay_36015_S1Hand.tif
+│   │   ├── Paraguay_36146_S1Hand.tif
+│   │   ├── Paraguay_403081_S1Hand.tif
+│   │   ├── Paraguay_40936_S1Hand.tif
+│   │   ├── Paraguay_44682_S1Hand.tif
+│   │   ├── Paraguay_470303_S1Hand.tif
+│   │   ├── Paraguay_482517_S1Hand.tif
+│   │   ├── Paraguay_48673_S1Hand.tif
+│   │   ├── Paraguay_511199_S1Hand.tif
+│   │   ├── Paraguay_54421_S1Hand.tif
+│   │   ├── Paraguay_581976_S1Hand.tif
+│   │   ├── Paraguay_59731_S1Hand.tif
+│   │   ├── Paraguay_605682_S1Hand.tif
+│   │   ├── Paraguay_62897_S1Hand.tif
+│   │   ├── Paraguay_648632_S1Hand.tif
+│   │   ├── Paraguay_651904_S1Hand.tif
+│   │   ├── Paraguay_657443_S1Hand.tif
+│   │   ├── Paraguay_683296_S1Hand.tif
+│   │   ├── Paraguay_721886_S1Hand.tif
+│   │   ├── Paraguay_76868_S1Hand.tif
+│   │   ├── Paraguay_7894_S1Hand.tif
+│   │   ├── Paraguay_790830_S1Hand.tif
+│   │   ├── Paraguay_791364_S1Hand.tif
+│   │   ├── Paraguay_792268_S1Hand.tif
+│   │   ├── Paraguay_795075_S1Hand.tif
+│   │   ├── Paraguay_80102_S1Hand.tif
+│   │   ├── Paraguay_822142_S1Hand.tif
+│   │   ├── Paraguay_868895_S1Hand.tif
+│   │   ├── Paraguay_892933_S1Hand.tif
+│   │   ├── Paraguay_896458_S1Hand.tif
+│   │   ├── Paraguay_913449_S1Hand.tif
+│   │   ├── Paraguay_921838_S1Hand.tif
+│   │   ├── Paraguay_934240_S1Hand.tif
+│   │   ├── Paraguay_989230_S1Hand.tif
+│   │   ├── Paraguay_997480_S1Hand.tif
+│   │   ├── Somalia_1068756_S1Hand.tif
+│   │   ├── Somalia_1087508_S1Hand.tif
+│   │   ├── Somalia_12849_S1Hand.tif
+│   │   ├── Somalia_166342_S1Hand.tif
+│   │   ├── Somalia_167787_S1Hand.tif
+│   │   ├── Somalia_195014_S1Hand.tif
+│   │   ├── Somalia_205466_S1Hand.tif
+│   │   ├── Somalia_230192_S1Hand.tif
+│   │   ├── Somalia_256539_S1Hand.tif
+│   │   ├── Somalia_295782_S1Hand.tif
+│   │   ├── Somalia_322855_S1Hand.tif
+│   │   ├── Somalia_32375_S1Hand.tif
+│   │   ├── Somalia_371421_S1Hand.tif
+│   │   ├── Somalia_60129_S1Hand.tif
+│   │   ├── Somalia_61368_S1Hand.tif
+│   │   ├── Somalia_626316_S1Hand.tif
+│   │   ├── Somalia_649376_S1Hand.tif
+│   │   ├── Somalia_685158_S1Hand.tif
+│   │   ├── Somalia_699062_S1Hand.tif
+│   │   ├── Somalia_7931_S1Hand.tif
+│   │   ├── Somalia_886726_S1Hand.tif
+│   │   ├── Somalia_93023_S1Hand.tif
+│   │   ├── Somalia_94102_S1Hand.tif
+│   │   ├── Somalia_970508_S1Hand.tif
+│   │   ├── Somalia_989553_S1Hand.tif
+│   │   ├── Somalia_992457_S1Hand.tif
+│   │   ├── Spain_1167260_S1Hand.tif
+│   │   ├── Spain_1199913_S1Hand.tif
+│   │   ├── Spain_2472849_S1Hand.tif
+│   │   ├── Spain_2523247_S1Hand.tif
+│   │   ├── Spain_2594119_S1Hand.tif
+│   │   ├── Spain_2938657_S1Hand.tif
+│   │   ├── Spain_3285448_S1Hand.tif
+│   │   ├── Spain_337094_S1Hand.tif
+│   │   ├── Spain_4282030_S1Hand.tif
+│   │   ├── Spain_4915752_S1Hand.tif
+│   │   ├── Spain_5650136_S1Hand.tif
+│   │   ├── Spain_5678382_S1Hand.tif
+│   │   ├── Spain_5816638_S1Hand.tif
+│   │   ├── Spain_5923267_S1Hand.tif
+│   │   ├── Spain_6095801_S1Hand.tif
+│   │   ├── Spain_6199994_S1Hand.tif
+│   │   ├── Spain_6537196_S1Hand.tif
+│   │   ├── Spain_6860600_S1Hand.tif
+│   │   ├── Spain_716716_S1Hand.tif
+│   │   ├── Spain_7370579_S1Hand.tif
+│   │   ├── Spain_7387658_S1Hand.tif
+│   │   ├── Spain_7558720_S1Hand.tif
+│   │   ├── Spain_7604243_S1Hand.tif
+│   │   ├── Spain_7786924_S1Hand.tif
+│   │   ├── Spain_7856615_S1Hand.tif
+│   │   ├── Spain_8104659_S1Hand.tif
+│   │   ├── Spain_8154154_S1Hand.tif
+│   │   ├── Spain_8199661_S1Hand.tif
+│   │   ├── Spain_8372658_S1Hand.tif
+│   │   ├── Spain_8565131_S1Hand.tif
+│   │   ├── Sri-Lanka_101973_S1Hand.tif
+│   │   ├── Sri-Lanka_1038087_S1Hand.tif
+│   │   ├── Sri-Lanka_1049830_S1Hand.tif
+│   │   ├── Sri-Lanka_117737_S1Hand.tif
+│   │   ├── Sri-Lanka_120804_S1Hand.tif
+│   │   ├── Sri-Lanka_132922_S1Hand.tif
+│   │   ├── Sri-Lanka_135713_S1Hand.tif
+│   │   ├── Sri-Lanka_14484_S1Hand.tif
+│   │   ├── Sri-Lanka_152185_S1Hand.tif
+│   │   ├── Sri-Lanka_163406_S1Hand.tif
+│   │   ├── Sri-Lanka_178753_S1Hand.tif
+│   │   ├── Sri-Lanka_233609_S1Hand.tif
+│   │   ├── Sri-Lanka_236030_S1Hand.tif
+│   │   ├── Sri-Lanka_236628_S1Hand.tif
+│   │   ├── Sri-Lanka_249079_S1Hand.tif
+│   │   ├── Sri-Lanka_31559_S1Hand.tif
+│   │   ├── Sri-Lanka_321316_S1Hand.tif
+│   │   ├── Sri-Lanka_377277_S1Hand.tif
+│   │   ├── Sri-Lanka_400518_S1Hand.tif
+│   │   ├── Sri-Lanka_450918_S1Hand.tif
+│   │   ├── Sri-Lanka_49764_S1Hand.tif
+│   │   ├── Sri-Lanka_52223_S1Hand.tif
+│   │   ├── Sri-Lanka_523539_S1Hand.tif
+│   │   ├── Sri-Lanka_534068_S1Hand.tif
+│   │   ├── Sri-Lanka_551926_S1Hand.tif
+│   │   ├── Sri-Lanka_55568_S1Hand.tif
+│   │   ├── Sri-Lanka_579082_S1Hand.tif
+│   │   ├── Sri-Lanka_612594_S1Hand.tif
+│   │   ├── Sri-Lanka_63307_S1Hand.tif
+│   │   ├── Sri-Lanka_649970_S1Hand.tif
+│   │   ├── Sri-Lanka_653336_S1Hand.tif
+│   │   ├── Sri-Lanka_713926_S1Hand.tif
+│   │   ├── Sri-Lanka_748447_S1Hand.tif
+│   │   ├── Sri-Lanka_845821_S1Hand.tif
+│   │   ├── Sri-Lanka_847275_S1Hand.tif
+│   │   ├── Sri-Lanka_849649_S1Hand.tif
+│   │   ├── Sri-Lanka_85652_S1Hand.tif
+│   │   ├── Sri-Lanka_883641_S1Hand.tif
+│   │   ├── Sri-Lanka_916628_S1Hand.tif
+│   │   ├── Sri-Lanka_922192_S1Hand.tif
+│   │   ├── Sri-Lanka_92824_S1Hand.tif
+│   │   ├── Sri-Lanka_956740_S1Hand.tif
+│   │   ├── USA_1010394_S1Hand.tif
+│   │   ├── USA_1039203_S1Hand.tif
+│   │   ├── USA_1049586_S1Hand.tif
+│   │   ├── USA_1068362_S1Hand.tif
+│   │   ├── USA_1082482_S1Hand.tif
+│   │   ├── USA_11422_S1Hand.tif
+│   │   ├── USA_114964_S1Hand.tif
+│   │   ├── USA_115033_S1Hand.tif
+│   │   ├── USA_170264_S1Hand.tif
+│   │   ├── USA_179917_S1Hand.tif
+│   │   ├── USA_181263_S1Hand.tif
+│   │   ├── USA_181503_S1Hand.tif
+│   │   ├── USA_19225_S1Hand.tif
+│   │   ├── USA_198411_S1Hand.tif
+│   │   ├── USA_211406_S1Hand.tif
+│   │   ├── USA_217598_S1Hand.tif
+│   │   ├── USA_224165_S1Hand.tif
+│   │   ├── USA_225017_S1Hand.tif
+│   │   ├── USA_231124_S1Hand.tif
+│   │   ├── USA_232060_S1Hand.tif
+│   │   ├── USA_251323_S1Hand.tif
+│   │   ├── USA_260929_S1Hand.tif
+│   │   ├── USA_275372_S1Hand.tif
+│   │   ├── USA_308150_S1Hand.tif
+│   │   ├── USA_347609_S1Hand.tif
+│   │   ├── USA_348639_S1Hand.tif
+│   │   ├── USA_350244_S1Hand.tif
+│   │   ├── USA_354981_S1Hand.tif
+│   │   ├── USA_366607_S1Hand.tif
+│   │   ├── USA_375183_S1Hand.tif
+│   │   ├── USA_387945_S1Hand.tif
+│   │   ├── USA_430764_S1Hand.tif
+│   │   ├── USA_438959_S1Hand.tif
+│   │   ├── USA_486103_S1Hand.tif
+│   │   ├── USA_504150_S1Hand.tif
+│   │   ├── USA_519181_S1Hand.tif
+│   │   ├── USA_527077_S1Hand.tif
+│   │   ├── USA_58086_S1Hand.tif
+│   │   ├── USA_595451_S1Hand.tif
+│   │   ├── USA_604222_S1Hand.tif
+│   │   ├── USA_605492_S1Hand.tif
+│   │   ├── USA_638521_S1Hand.tif
+│   │   ├── USA_646878_S1Hand.tif
+│   │   ├── USA_652955_S1Hand.tif
+│   │   ├── USA_655230_S1Hand.tif
+│   │   ├── USA_66026_S1Hand.tif
+│   │   ├── USA_664261_S1Hand.tif
+│   │   ├── USA_66511_S1Hand.tif
+│   │   ├── USA_670826_S1Hand.tif
+│   │   ├── USA_67102_S1Hand.tif
+│   │   ├── USA_693819_S1Hand.tif
+│   │   ├── USA_741073_S1Hand.tif
+│   │   ├── USA_741178_S1Hand.tif
+│   │   ├── USA_758178_S1Hand.tif
+│   │   ├── USA_761032_S1Hand.tif
+│   │   ├── USA_770353_S1Hand.tif
+│   │   ├── USA_778194_S1Hand.tif
+│   │   ├── USA_788696_S1Hand.tif
+│   │   ├── USA_806273_S1Hand.tif
+│   │   ├── USA_826217_S1Hand.tif
+│   │   ├── USA_831672_S1Hand.tif
+│   │   ├── USA_84195_S1Hand.tif
+│   │   ├── USA_86502_S1Hand.tif
+│   │   ├── USA_905409_S1Hand.tif
+│   │   ├── USA_908474_S1Hand.tif
+│   │   ├── USA_933610_S1Hand.tif
+│   │   ├── USA_955053_S1Hand.tif
+│   │   ├── USA_986268_S1Hand.tif
+│   │   └── USA_994009_S1Hand.tif
+│   └── S2Hand
+│       ├── Bolivia_103757_S2Hand.tif
+│       ├── Bolivia_129334_S2Hand.tif
+│       ├── Bolivia_195474_S2Hand.tif
+│       ├── Bolivia_23014_S2Hand.tif
+│       ├── Bolivia_233925_S2Hand.tif
+│       ├── Bolivia_242570_S2Hand.tif
+│       ├── Bolivia_290290_S2Hand.tif
+│       ├── Bolivia_294583_S2Hand.tif
+│       ├── Bolivia_312675_S2Hand.tif
+│       ├── Bolivia_314919_S2Hand.tif
+│       ├── Bolivia_360519_S2Hand.tif
+│       ├── Bolivia_379434_S2Hand.tif
+│       ├── Bolivia_432776_S2Hand.tif
+│       ├── Bolivia_60373_S2Hand.tif
+│       ├── Bolivia_76104_S2Hand.tif
+│       ├── Ghana_103272_S2Hand.tif
+│       ├── Ghana_1033830_S2Hand.tif
+│       ├── Ghana_1078550_S2Hand.tif
+│       ├── Ghana_1089161_S2Hand.tif
+│       ├── Ghana_11745_S2Hand.tif
+│       ├── Ghana_124834_S2Hand.tif
+│       ├── Ghana_128663_S2Hand.tif
+│       ├── Ghana_132163_S2Hand.tif
+│       ├── Ghana_134751_S2Hand.tif
+│       ├── Ghana_135389_S2Hand.tif
+│       ├── Ghana_141271_S2Hand.tif
+│       ├── Ghana_141910_S2Hand.tif
+│       ├── Ghana_142312_S2Hand.tif
+│       ├── Ghana_144050_S2Hand.tif
+│       ├── Ghana_146222_S2Hand.tif
+│       ├── Ghana_147015_S2Hand.tif
+│       ├── Ghana_154838_S2Hand.tif
+│       ├── Ghana_156478_S2Hand.tif
+│       ├── Ghana_161233_S2Hand.tif
+│       ├── Ghana_167233_S2Hand.tif
+│       ├── Ghana_168875_S2Hand.tif
+│       ├── Ghana_187318_S2Hand.tif
+│       ├── Ghana_194723_S2Hand.tif
+│       ├── Ghana_234935_S2Hand.tif
+│       ├── Ghana_247288_S2Hand.tif
+│       ├── Ghana_24858_S2Hand.tif
+│       ├── Ghana_26376_S2Hand.tif
+│       ├── Ghana_264787_S2Hand.tif
+│       ├── Ghana_277_S2Hand.tif
+│       ├── Ghana_308249_S2Hand.tif
+│       ├── Ghana_313799_S2Hand.tif
+│       ├── Ghana_319168_S2Hand.tif
+│       ├── Ghana_359826_S2Hand.tif
+│       ├── Ghana_362274_S2Hand.tif
+│       ├── Ghana_406026_S2Hand.tif
+│       ├── Ghana_45911_S2Hand.tif
+│       ├── Ghana_495107_S2Hand.tif
+│       ├── Ghana_49890_S2Hand.tif
+│       ├── Ghana_5079_S2Hand.tif
+│       ├── Ghana_53713_S2Hand.tif
+│       ├── Ghana_597288_S2Hand.tif
+│       ├── Ghana_61925_S2Hand.tif
+│       ├── Ghana_7496_S2Hand.tif
+│       ├── Ghana_8090_S2Hand.tif
+│       ├── Ghana_83200_S2Hand.tif
+│       ├── Ghana_83483_S2Hand.tif
+│       ├── Ghana_866994_S2Hand.tif
+│       ├── Ghana_868803_S2Hand.tif
+│       ├── Ghana_887131_S2Hand.tif
+│       ├── Ghana_895194_S2Hand.tif
+│       ├── Ghana_953791_S2Hand.tif
+│       ├── Ghana_97059_S2Hand.tif
+│       ├── Ghana_97516_S2Hand.tif
+│       ├── India_1017769_S2Hand.tif
+│       ├── India_1018317_S2Hand.tif
+│       ├── India_1018327_S2Hand.tif
+│       ├── India_103447_S2Hand.tif
+│       ├── India_1050276_S2Hand.tif
+│       ├── India_1068117_S2Hand.tif
+│       ├── India_1072277_S2Hand.tif
+│       ├── India_118868_S2Hand.tif
+│       ├── India_135434_S2Hand.tif
+│       ├── India_136196_S2Hand.tif
+│       ├── India_164336_S2Hand.tif
+│       ├── India_166709_S2Hand.tif
+│       ├── India_177319_S2Hand.tif
+│       ├── India_179238_S2Hand.tif
+│       ├── India_180633_S2Hand.tif
+│       ├── India_207862_S2Hand.tif
+│       ├── India_244057_S2Hand.tif
+│       ├── India_25540_S2Hand.tif
+│       ├── India_265762_S2Hand.tif
+│       ├── India_273873_S2Hand.tif
+│       ├── India_285297_S2Hand.tif
+│       ├── India_287642_S2Hand.tif
+│       ├── India_324254_S2Hand.tif
+│       ├── India_373039_S2Hand.tif
+│       ├── India_383430_S2Hand.tif
+│       ├── India_391908_S2Hand.tif
+│       ├── India_399883_S2Hand.tif
+│       ├── India_44475_S2Hand.tif
+│       ├── India_500266_S2Hand.tif
+│       ├── India_533192_S2Hand.tif
+│       ├── India_534470_S2Hand.tif
+│       ├── India_56450_S2Hand.tif
+│       ├── India_566697_S2Hand.tif
+│       ├── India_570384_S2Hand.tif
+│       ├── India_591317_S2Hand.tif
+│       ├── India_591549_S2Hand.tif
+│       ├── India_592446_S2Hand.tif
+│       ├── India_59460_S2Hand.tif
+│       ├── India_624341_S2Hand.tif
+│       ├── India_631692_S2Hand.tif
+│       ├── India_652725_S2Hand.tif
+│       ├── India_664410_S2Hand.tif
+│       ├── India_691027_S2Hand.tif
+│       ├── India_698338_S2Hand.tif
+│       ├── India_70352_S2Hand.tif
+│       ├── India_707886_S2Hand.tif
+│       ├── India_73419_S2Hand.tif
+│       ├── India_747970_S2Hand.tif
+│       ├── India_747992_S2Hand.tif
+│       ├── India_764946_S2Hand.tif
+│       ├── India_769408_S2Hand.tif
+│       ├── India_772630_S2Hand.tif
+│       ├── India_773682_S2Hand.tif
+│       ├── India_774689_S2Hand.tif
+│       ├── India_79637_S2Hand.tif
+│       ├── India_80221_S2Hand.tif
+│       ├── India_804466_S2Hand.tif
+│       ├── India_828067_S2Hand.tif
+│       ├── India_833266_S2Hand.tif
+│       ├── India_842775_S2Hand.tif
+│       ├── India_869358_S2Hand.tif
+│       ├── India_900498_S2Hand.tif
+│       ├── India_91379_S2Hand.tif
+│       ├── India_943439_S2Hand.tif
+│       ├── India_952728_S2Hand.tif
+│       ├── India_956930_S2Hand.tif
+│       ├── India_979278_S2Hand.tif
+│       ├── India_981708_S2Hand.tif
+│       ├── Mekong_1111068_S2Hand.tif
+│       ├── Mekong_1149855_S2Hand.tif
+│       ├── Mekong_1191208_S2Hand.tif
+│       ├── Mekong_119477_S2Hand.tif
+│       ├── Mekong_1248200_S2Hand.tif
+│       ├── Mekong_1282475_S2Hand.tif
+│       ├── Mekong_1395593_S2Hand.tif
+│       ├── Mekong_1396181_S2Hand.tif
+│       ├── Mekong_1413877_S2Hand.tif
+│       ├── Mekong_1439641_S2Hand.tif
+│       ├── Mekong_1443339_S2Hand.tif
+│       ├── Mekong_16233_S2Hand.tif
+│       ├── Mekong_213094_S2Hand.tif
+│       ├── Mekong_221789_S2Hand.tif
+│       ├── Mekong_254910_S2Hand.tif
+│       ├── Mekong_269835_S2Hand.tif
+│       ├── Mekong_293769_S2Hand.tif
+│       ├── Mekong_333434_S2Hand.tif
+│       ├── Mekong_342411_S2Hand.tif
+│       ├── Mekong_382276_S2Hand.tif
+│       ├── Mekong_424793_S2Hand.tif
+│       ├── Mekong_45934_S2Hand.tif
+│       ├── Mekong_474783_S2Hand.tif
+│       ├── Mekong_52610_S2Hand.tif
+│       ├── Mekong_596495_S2Hand.tif
+│       ├── Mekong_774566_S2Hand.tif
+│       ├── Mekong_846007_S2Hand.tif
+│       ├── Mekong_922373_S2Hand.tif
+│       ├── Mekong_977338_S2Hand.tif
+│       ├── Mekong_98310_S2Hand.tif
+│       ├── Nigeria_1095404_S2Hand.tif
+│       ├── Nigeria_143329_S2Hand.tif
+│       ├── Nigeria_22088_S2Hand.tif
+│       ├── Nigeria_225131_S2Hand.tif
+│       ├── Nigeria_31096_S2Hand.tif
+│       ├── Nigeria_35845_S2Hand.tif
+│       ├── Nigeria_417184_S2Hand.tif
+│       ├── Nigeria_439488_S2Hand.tif
+│       ├── Nigeria_529525_S2Hand.tif
+│       ├── Nigeria_598959_S2Hand.tif
+│       ├── Nigeria_600295_S2Hand.tif
+│       ├── Nigeria_707067_S2Hand.tif
+│       ├── Nigeria_78061_S2Hand.tif
+│       ├── Nigeria_812045_S2Hand.tif
+│       ├── Nigeria_81933_S2Hand.tif
+│       ├── Nigeria_820924_S2Hand.tif
+│       ├── Nigeria_952958_S2Hand.tif
+│       ├── Nigeria_984831_S2Hand.tif
+│       ├── Pakistan_1027214_S2Hand.tif
+│       ├── Pakistan_1036366_S2Hand.tif
+│       ├── Pakistan_132143_S2Hand.tif
+│       ├── Pakistan_167553_S2Hand.tif
+│       ├── Pakistan_210595_S2Hand.tif
+│       ├── Pakistan_211386_S2Hand.tif
+│       ├── Pakistan_246510_S2Hand.tif
+│       ├── Pakistan_246718_S2Hand.tif
+│       ├── Pakistan_336228_S2Hand.tif
+│       ├── Pakistan_35915_S2Hand.tif
+│       ├── Pakistan_366265_S2Hand.tif
+│       ├── Pakistan_401863_S2Hand.tif
+│       ├── Pakistan_43105_S2Hand.tif
+│       ├── Pakistan_474121_S2Hand.tif
+│       ├── Pakistan_528249_S2Hand.tif
+│       ├── Pakistan_548910_S2Hand.tif
+│       ├── Pakistan_65724_S2Hand.tif
+│       ├── Pakistan_664885_S2Hand.tif
+│       ├── Pakistan_667363_S2Hand.tif
+│       ├── Pakistan_694942_S2Hand.tif
+│       ├── Pakistan_70625_S2Hand.tif
+│       ├── Pakistan_712873_S2Hand.tif
+│       ├── Pakistan_740461_S2Hand.tif
+│       ├── Pakistan_760290_S2Hand.tif
+│       ├── Pakistan_849790_S2Hand.tif
+│       ├── Pakistan_909806_S2Hand.tif
+│       ├── Pakistan_94095_S2Hand.tif
+│       ├── Pakistan_9684_S2Hand.tif
+│       ├── Paraguay_1019808_S2Hand.tif
+│       ├── Paraguay_1029042_S2Hand.tif
+│       ├── Paraguay_1029191_S2Hand.tif
+│       ├── Paraguay_1056717_S2Hand.tif
+│       ├── Paraguay_1076204_S2Hand.tif
+│       ├── Paraguay_11869_S2Hand.tif
+│       ├── Paraguay_126224_S2Hand.tif
+│       ├── Paraguay_12870_S2Hand.tif
+│       ├── Paraguay_148318_S2Hand.tif
+│       ├── Paraguay_149787_S2Hand.tif
+│       ├── Paraguay_149830_S2Hand.tif
+│       ├── Paraguay_153941_S2Hand.tif
+│       ├── Paraguay_172476_S2Hand.tif
+│       ├── Paraguay_179624_S2Hand.tif
+│       ├── Paraguay_191503_S2Hand.tif
+│       ├── Paraguay_198534_S2Hand.tif
+│       ├── Paraguay_205585_S2Hand.tif
+│       ├── Paraguay_212687_S2Hand.tif
+│       ├── Paraguay_215904_S2Hand.tif
+│       ├── Paraguay_224845_S2Hand.tif
+│       ├── Paraguay_225187_S2Hand.tif
+│       ├── Paraguay_232281_S2Hand.tif
+│       ├── Paraguay_24341_S2Hand.tif
+│       ├── Paraguay_246154_S2Hand.tif
+│       ├── Paraguay_247656_S2Hand.tif
+│       ├── Paraguay_252217_S2Hand.tif
+│       ├── Paraguay_271769_S2Hand.tif
+│       ├── Paraguay_280900_S2Hand.tif
+│       ├── Paraguay_284928_S2Hand.tif
+│       ├── Paraguay_305760_S2Hand.tif
+│       ├── Paraguay_339807_S2Hand.tif
+│       ├── Paraguay_34417_S2Hand.tif
+│       ├── Paraguay_36015_S2Hand.tif
+│       ├── Paraguay_36146_S2Hand.tif
+│       ├── Paraguay_403081_S2Hand.tif
+│       ├── Paraguay_40936_S2Hand.tif
+│       ├── Paraguay_44682_S2Hand.tif
+│       ├── Paraguay_470303_S2Hand.tif
+│       ├── Paraguay_482517_S2Hand.tif
+│       ├── Paraguay_48673_S2Hand.tif
+│       ├── Paraguay_511199_S2Hand.tif
+│       ├── Paraguay_54421_S2Hand.tif
+│       ├── Paraguay_581976_S2Hand.tif
+│       ├── Paraguay_59731_S2Hand.tif
+│       ├── Paraguay_605682_S2Hand.tif
+│       ├── Paraguay_62897_S2Hand.tif
+│       ├── Paraguay_648632_S2Hand.tif
+│       ├── Paraguay_651904_S2Hand.tif
+│       ├── Paraguay_657443_S2Hand.tif
+│       ├── Paraguay_683296_S2Hand.tif
+│       ├── Paraguay_721886_S2Hand.tif
+│       ├── Paraguay_76868_S2Hand.tif
+│       ├── Paraguay_7894_S2Hand.tif
+│       ├── Paraguay_790830_S2Hand.tif
+│       ├── Paraguay_791364_S2Hand.tif
+│       ├── Paraguay_792268_S2Hand.tif
+│       ├── Paraguay_795075_S2Hand.tif
+│       ├── Paraguay_80102_S2Hand.tif
+│       ├── Paraguay_822142_S2Hand.tif
+│       ├── Paraguay_868895_S2Hand.tif
+│       ├── Paraguay_892933_S2Hand.tif
+│       ├── Paraguay_896458_S2Hand.tif
+│       ├── Paraguay_913449_S2Hand.tif
+│       ├── Paraguay_921838_S2Hand.tif
+│       ├── Paraguay_934240_S2Hand.tif
+│       ├── Paraguay_989230_S2Hand.tif
+│       ├── Paraguay_997480_S2Hand.tif
+│       ├── Somalia_1068756_S2Hand.tif
+│       ├── Somalia_1087508_S2Hand.tif
+│       ├── Somalia_12849_S2Hand.tif
+│       ├── Somalia_166342_S2Hand.tif
+│       ├── Somalia_167787_S2Hand.tif
+│       ├── Somalia_195014_S2Hand.tif
+│       ├── Somalia_205466_S2Hand.tif
+│       ├── Somalia_230192_S2Hand.tif
+│       ├── Somalia_256539_S2Hand.tif
+│       ├── Somalia_295782_S2Hand.tif
+│       ├── Somalia_322855_S2Hand.tif
+│       ├── Somalia_32375_S2Hand.tif
+│       ├── Somalia_371421_S2Hand.tif
+│       ├── Somalia_60129_S2Hand.tif
+│       ├── Somalia_61368_S2Hand.tif
+│       ├── Somalia_626316_S2Hand.tif
+│       ├── Somalia_649376_S2Hand.tif
+│       ├── Somalia_685158_S2Hand.tif
+│       ├── Somalia_699062_S2Hand.tif
+│       ├── Somalia_7931_S2Hand.tif
+│       ├── Somalia_886726_S2Hand.tif
+│       ├── Somalia_93023_S2Hand.tif
+│       ├── Somalia_94102_S2Hand.tif
+│       ├── Somalia_970508_S2Hand.tif
+│       ├── Somalia_989553_S2Hand.tif
+│       ├── Somalia_992457_S2Hand.tif
+│       ├── Spain_1167260_S2Hand.tif
+│       ├── Spain_1199913_S2Hand.tif
+│       ├── Spain_2472849_S2Hand.tif
+│       ├── Spain_2523247_S2Hand.tif
+│       ├── Spain_2594119_S2Hand.tif
+│       ├── Spain_2938657_S2Hand.tif
+│       ├── Spain_3285448_S2Hand.tif
+│       ├── Spain_337094_S2Hand.tif
+│       ├── Spain_4282030_S2Hand.tif
+│       ├── Spain_4915752_S2Hand.tif
+│       ├── Spain_5650136_S2Hand.tif
+│       ├── Spain_5678382_S2Hand.tif
+│       ├── Spain_5816638_S2Hand.tif
+│       ├── Spain_5923267_S2Hand.tif
+│       ├── Spain_6095801_S2Hand.tif
+│       ├── Spain_6199994_S2Hand.tif
+│       ├── Spain_6537196_S2Hand.tif
+│       ├── Spain_6860600_S2Hand.tif
+│       ├── Spain_716716_S2Hand.tif
+│       ├── Spain_7370579_S2Hand.tif
+│       ├── Spain_7387658_S2Hand.tif
+│       ├── Spain_7558720_S2Hand.tif
+│       ├── Spain_7604243_S2Hand.tif
+│       ├── Spain_7786924_S2Hand.tif
+│       ├── Spain_7856615_S2Hand.tif
+│       ├── Spain_8104659_S2Hand.tif
+│       ├── Spain_8154154_S2Hand.tif
+│       ├── Spain_8199661_S2Hand.tif
+│       ├── Spain_8372658_S2Hand.tif
+│       ├── Spain_8565131_S2Hand.tif
+│       ├── Sri-Lanka_101973_S2Hand.tif
+│       ├── Sri-Lanka_1038087_S2Hand.tif
+│       ├── Sri-Lanka_1049830_S2Hand.tif
+│       ├── Sri-Lanka_117737_S2Hand.tif
+│       ├── Sri-Lanka_120804_S2Hand.tif
+│       ├── Sri-Lanka_132922_S2Hand.tif
+│       ├── Sri-Lanka_135713_S2Hand.tif
+│       ├── Sri-Lanka_14484_S2Hand.tif
+│       ├── Sri-Lanka_152185_S2Hand.tif
+│       ├── Sri-Lanka_163406_S2Hand.tif
+│       ├── Sri-Lanka_178753_S2Hand.tif
+│       ├── Sri-Lanka_233609_S2Hand.tif
+│       ├── Sri-Lanka_236030_S2Hand.tif
+│       ├── Sri-Lanka_236628_S2Hand.tif
+│       ├── Sri-Lanka_249079_S2Hand.tif
+│       ├── Sri-Lanka_31559_S2Hand.tif
+│       ├── Sri-Lanka_321316_S2Hand.tif
+│       ├── Sri-Lanka_377277_S2Hand.tif
+│       ├── Sri-Lanka_400518_S2Hand.tif
+│       ├── Sri-Lanka_450918_S2Hand.tif
+│       ├── Sri-Lanka_49764_S2Hand.tif
+│       ├── Sri-Lanka_52223_S2Hand.tif
+│       ├── Sri-Lanka_523539_S2Hand.tif
+│       ├── Sri-Lanka_534068_S2Hand.tif
+│       ├── Sri-Lanka_551926_S2Hand.tif
+│       ├── Sri-Lanka_55568_S2Hand.tif
+│       ├── Sri-Lanka_579082_S2Hand.tif
+│       ├── Sri-Lanka_612594_S2Hand.tif
+│       ├── Sri-Lanka_63307_S2Hand.tif
+│       ├── Sri-Lanka_649970_S2Hand.tif
+│       ├── Sri-Lanka_653336_S2Hand.tif
+│       ├── Sri-Lanka_713926_S2Hand.tif
+│       ├── Sri-Lanka_748447_S2Hand.tif
+│       ├── Sri-Lanka_845821_S2Hand.tif
+│       ├── Sri-Lanka_847275_S2Hand.tif
+│       ├── Sri-Lanka_849649_S2Hand.tif
+│       ├── Sri-Lanka_85652_S2Hand.tif
+│       ├── Sri-Lanka_883641_S2Hand.tif
+│       ├── Sri-Lanka_916628_S2Hand.tif
+│       ├── Sri-Lanka_922192_S2Hand.tif
+│       ├── Sri-Lanka_92824_S2Hand.tif
+│       ├── Sri-Lanka_956740_S2Hand.tif
+│       ├── USA_1010394_S2Hand.tif
+│       ├── USA_1039203_S2Hand.tif
+│       ├── USA_1049586_S2Hand.tif
+│       ├── USA_1068362_S2Hand.tif
+│       ├── USA_1082482_S2Hand.tif
+│       ├── USA_11422_S2Hand.tif
+│       ├── USA_114964_S2Hand.tif
+│       ├── USA_115033_S2Hand.tif
+│       ├── USA_170264_S2Hand.tif
+│       ├── USA_179917_S2Hand.tif
+│       ├── USA_181263_S2Hand.tif
+│       ├── USA_181503_S2Hand.tif
+│       ├── USA_19225_S2Hand.tif
+│       ├── USA_198411_S2Hand.tif
+│       ├── USA_211406_S2Hand.tif
+│       ├── USA_217598_S2Hand.tif
+│       ├── USA_224165_S2Hand.tif
+│       ├── USA_225017_S2Hand.tif
+│       ├── USA_231124_S2Hand.tif
+│       ├── USA_232060_S2Hand.tif
+│       ├── USA_251323_S2Hand.tif
+│       ├── USA_260929_S2Hand.tif
+│       ├── USA_275372_S2Hand.tif
+│       ├── USA_308150_S2Hand.tif
+│       ├── USA_347609_S2Hand.tif
+│       ├── USA_348639_S2Hand.tif
+│       ├── USA_350244_S2Hand.tif
+│       ├── USA_354981_S2Hand.tif
+│       ├── USA_366607_S2Hand.tif
+│       ├── USA_375183_S2Hand.tif
+│       ├── USA_387945_S2Hand.tif
+│       ├── USA_430764_S2Hand.tif
+│       ├── USA_438959_S2Hand.tif
+│       ├── USA_486103_S2Hand.tif
+│       ├── USA_504150_S2Hand.tif
+│       ├── USA_519181_S2Hand.tif
+│       ├── USA_527077_S2Hand.tif
+│       ├── USA_58086_S2Hand.tif
+│       ├── USA_595451_S2Hand.tif
+│       ├── USA_604222_S2Hand.tif
+│       ├── USA_605492_S2Hand.tif
+│       ├── USA_638521_S2Hand.tif
+│       ├── USA_646878_S2Hand.tif
+│       ├── USA_652955_S2Hand.tif
+│       ├── USA_655230_S2Hand.tif
+│       ├── USA_66026_S2Hand.tif
+│       ├── USA_664261_S2Hand.tif
+│       ├── USA_66511_S2Hand.tif
+│       ├── USA_670826_S2Hand.tif
+│       ├── USA_67102_S2Hand.tif
+│       ├── USA_693819_S2Hand.tif
+│       ├── USA_741073_S2Hand.tif
+│       ├── USA_741178_S2Hand.tif
+│       ├── USA_758178_S2Hand.tif
+│       ├── USA_761032_S2Hand.tif
+│       ├── USA_770353_S2Hand.tif
+│       ├── USA_778194_S2Hand.tif
+│       ├── USA_788696_S2Hand.tif
+│       ├── USA_806273_S2Hand.tif
+│       ├── USA_826217_S2Hand.tif
+│       ├── USA_831672_S2Hand.tif
+│       ├── USA_84195_S2Hand.tif
+│       ├── USA_86502_S2Hand.tif
+│       ├── USA_905409_S2Hand.tif
+│       ├── USA_908474_S2Hand.tif
+│       ├── USA_933610_S2Hand.tif
+│       ├── USA_955053_S2Hand.tif
+│       ├── USA_986268_S2Hand.tif
+│       └── USA_994009_S2Hand.tif
+└── splits
+    ├── flood_bolivia_data.csv
+    ├── flood_test_data.csv
+    ├── flood_train_data.csv
+    └── flood_valid_data.csv
+
+7 directories, 1789 files
