@@ -144,8 +144,11 @@ def load_and_normalize(tif_path: str) -> tuple[np.ndarray, dict]:
         profile = src.profile.copy()
         bands = src.read().astype(np.float32)   # (C, H, W)
 
-    assert bands.shape[0] == 6, \
-        f"Expected 6 bands (VV,VH,DEM,Slope,JRC,HAND), got {bands.shape[0]}"
+    # GEE's `geedim` downloads sometimes append an extra fill-mask band, so
+    # the file may have 7 bands instead of 6. Only the first 6 are the data
+    # bands we stacked in the fetcher: [VV, VH, DEM, Slope, JRC, HAND].
+    assert bands.shape[0] >= 6, \
+        f"Expected >=6 bands (VV,VH,DEM,Slope,JRC,HAND), got {bands.shape[0]}"
 
     normalized = np.stack(
         [normalize_band(bands[i], band_names[i]) for i in range(6)],
@@ -336,6 +339,16 @@ def save_geotiff(array: np.ndarray, profile: dict, output_path: str):
     if array.ndim == 2:
         array = array[np.newaxis]   # (1, H, W)
     profile.update({"count": array.shape[0], "dtype": str(array.dtype)})
+
+    # Drop nodata if it doesn't fit the output dtype (e.g. NaN copied from a
+    # float input profile but we're writing uint8 class/mask outputs).
+    nd = profile.get("nodata")
+    if nd is not None:
+        try:
+            np.array([nd]).astype(array.dtype, casting="safe")
+        except (TypeError, ValueError):
+            profile.pop("nodata", None)
+
     with rasterio.open(output_path, "w", **profile) as dst:
         dst.write(array)
     print(f"[GeoTIFF] Saved → {output_path}")
