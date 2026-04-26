@@ -38,10 +38,14 @@ Channels assembled per sample:
 All bands normalized to [0, 1] using per-band statistics (min/max).
 
 Labels (3-class, derived at load time from LabelHand + JRCWaterHand):
-   2 = permanent water  (LabelHand == 1 AND JRC seasonality >= JRC_PERMANENT_THRESHOLD)
-   1 = flood            (LabelHand == 1 AND JRC seasonality <  JRC_PERMANENT_THRESHOLD)
+   2 = permanent water  (LabelHand == 1 AND JRCWaterHand >= JRC_PERMANENT_THRESHOLD)
+   1 = flood            (LabelHand == 1 AND JRCWaterHand <  JRC_PERMANENT_THRESHOLD)
    0 = non-water        (LabelHand == 0)
   -1 = masked/no-data   (LabelHand == -1, ignored in loss/metric computation)
+
+Note: Sen1Floods11 ships JRCWaterHand as a binary mask {0, 1}, so the default
+threshold (0.5) treats every JRC==1 pixel as permanent. About ~3% of labeled
+water pixels are permanent in this dataset.
 """
 
 import os
@@ -70,9 +74,14 @@ BAND_STATS = {
 
 BAND_ORDER = ["s1_vv", "s1_vh", "dem", "slope", "jrc", "hand"]
 
-# JRC seasonality threshold (months/year) above which a labeled water pixel
-# is considered permanent rather than flood. Matches inference.postprocess default.
-JRC_PERMANENT_THRESHOLD = 5.0
+# JRC threshold above which a labeled water pixel is treated as permanent
+# rather than flood. Sen1Floods11 ships JRCWaterHand as a BINARY mask
+# {0 = no permanent water, 1 = permanent water} — confirmed by inspecting the
+# tifs (max value across the dataset is 1). So 0.5 cleanly captures the "1"
+# bucket while staying robust to dtype rounding.
+# (Note: GEE's "seasonality" band at inference time is 0–12 instead — that
+#  uses a separate threshold inside inference.postprocess.)
+JRC_PERMANENT_THRESHOLD = 0.5
 
 
 def build_three_class_label(label_hand: np.ndarray,
