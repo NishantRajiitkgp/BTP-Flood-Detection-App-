@@ -43,12 +43,16 @@ BAND_SPECS = {
 
 def _init_ee():
     import ee
-    try:
-        ee.Initialize()
-    except Exception:
-        ee.Authenticate()
-        ee.Initialize()
-    print("[GEE] Earth Engine initialized.")
+
+    SERVICE_ACCOUNT_FILE = '/kaggle/input/datasets/yash10chawla/last-try-key/gee-kaggle-project-fbe0b036073d.json'
+
+    credentials = ee.ServiceAccountCredentials(
+        None,
+        SERVICE_ACCOUNT_FILE
+    )
+
+    ee.Initialize(credentials)
+    print("[GEE] Earth Engine initialized (service account).")
 
 
 def _bbox_from_tif(path: str):
