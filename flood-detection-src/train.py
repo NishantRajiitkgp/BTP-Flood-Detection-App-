@@ -330,6 +330,10 @@ def main(cfg: dict):
         patch_size  = cfg["patch_size"],
     )
 
+    train_loader = DataLoader(
+        datasets["train"], batch_size=cfg["batch_size"],
+        shuffle=True, num_workers=cfg["num_workers"], pin_memory=True,
+    )
     val_loader = DataLoader(
         datasets["val"], batch_size=cfg["batch_size"],
         shuffle=False, num_workers=cfg["num_workers"], pin_memory=True,
@@ -345,11 +349,12 @@ def main(cfg: dict):
         model, best_iou = run_training(cfg, loss_name, datasets, device)
         models_with_scores.append((model, best_iou))
 
-    # Build greedy soup
+    # Build greedy soup (train_loader is needed for BatchNorm recalibration
+    # after weight averaging — see _recalibrate_bn)
     dummy_criterion = get_mtl_loss("tversky")
     soup_model = greedy_model_soup(
-        models_with_scores, val_loader, dummy_criterion, device,
-        cfg["checkpoint_dir"],
+        models_with_scores, val_loader, train_loader, dummy_criterion,
+        device, cfg["checkpoint_dir"],
     )
 
     # Test set evaluation
