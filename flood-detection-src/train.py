@@ -238,6 +238,19 @@ def _recalibrate_bn(model: nn.Module, loader: DataLoader,
 
 def greedy_model_soup(models_with_scores, val_loader, train_loader,
                       criterion, device, checkpoint_dir):
+    """
+    Greedy weight-averaged ensemble (Wortsman et al. 2022 "Model Soups").
+
+    All parameters are averaged uniformly — including BatchNorm running_mean
+    and running_var. We deliberately do NOT reset and re-collect BN stats from
+    a small sample, because that destroys the calibration the trained weights
+    rely on (50 batches is far too few to recover stats accumulated over the
+    full training run).
+
+    `train_loader` is accepted for API stability but is unused.
+    """
+    del train_loader  # kept in signature for backwards-compat with main()
+
     print("\n" + "="*60)
     print("  Building Greedy Model Soup")
     print("="*60)
@@ -245,9 +258,8 @@ def greedy_model_soup(models_with_scores, val_loader, train_loader,
     ranked = sorted(models_with_scores, key=lambda x: x[1], reverse=True)
 
     soup_model = build_model(in_channels=6, pretrained=False).to(device)
-    soup_model.load_state_dict(ranked[0][0].state_dict())
-    _recalibrate_bn(soup_model, train_loader, device, n_batches=50)
-    soup_state = copy.deepcopy(soup_model.state_dict())
+    soup_state = copy.deepcopy(ranked[0][0].state_dict())
+    soup_model.load_state_dict(soup_state)
 
     _, base_metrics = validate(soup_model, val_loader, criterion, device)
     current_iou = base_metrics["iou"]
@@ -256,21 +268,21 @@ def greedy_model_soup(models_with_scores, val_loader, train_loader,
     n_members = 1
 
     for model, score in ranked[1:]:
-        # Average non-BN weights
-        candidate_state = {}
         new_state = model.state_dict()
+        candidate_state = {}
         for key in soup_state:
-            if any(k in key for k in ['running_mean', 'running_var', 'num_batches_tracked']):
+            # num_batches_tracked is an integer counter — keep the soup's value
+            if "num_batches_tracked" in key:
                 candidate_state[key] = soup_state[key]
-            else:
-                candidate_state[key] = (
-                    soup_state[key] * n_members + new_state[key]
-                ) / (n_members + 1)
+                continue
+            # Average everything else (weights + BN running stats) uniformly
+            candidate_state[key] = (
+                soup_state[key].float() * n_members + new_state[key].float()
+            ) / (n_members + 1)
+            # Preserve original dtype (BN running stats are float, weights are float)
+            candidate_state[key] = candidate_state[key].to(soup_state[key].dtype)
 
-        # Load averaged weights, recalibrate BN, sync stats back
         soup_model.load_state_dict(candidate_state)
-        _recalibrate_bn(soup_model, train_loader, device, n_batches=50)
-        candidate_state = copy.deepcopy(soup_model.state_dict())  # sync BN stats
 
         _, cand_metrics = validate(soup_model, val_loader, criterion, device)
         cand_iou = cand_metrics["iou"]
