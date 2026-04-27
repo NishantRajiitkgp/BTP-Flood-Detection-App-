@@ -1,2 +1,51 @@
+# --- Datasets (huge, hosted on Kaggle/GCS) ---
 BTP-SenData/
+final-sendata/
+
+# --- Trained checkpoints (huge, hosted on Kaggle) ---
 checkpoints-v2/
+checkpoints-v3/
+*.pth
+
+# --- Secrets — DO NOT COMMIT ---
+gee-key.json
+*service-account*.json
+*-key.json
+.kaggle/
+kaggle.json
+.env
+.env.local
+.env.*.local
+
+# --- Backend runtime artifacts ---
+.jobs/
+inference_outputs/
+outputs/
+*.tif.tmp.tif
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# --- Frontend (Next.js) ---
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/next-env.d.ts
+frontend/.vercel
+frontend/*.log
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Claude Code state ---
+.claude/

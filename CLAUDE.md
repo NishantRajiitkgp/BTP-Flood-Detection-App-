@@ -70,6 +70,39 @@ Encoder features are extracted at 5 levels (`out_indices=(0,1,2,3,4)`), channels
 
 ## Conventions
 
+## Web app (Next.js + FastAPI)
+
+The trained model is wrapped in a web app so the prof can demo flood prediction interactively. Architecture: **Next.js frontend on Vercel** ↔ **FastAPI backend running locally + tunneled via ngrok**. No auth, no DB, no Supabase — single-user demo.
+
+**Backend (`flood-detection-src/`)** — adds the following Python modules on top of the existing ML code:
+- `api.py` — FastAPI entrypoint. Loads `FloodPredictor` once at startup. Endpoints: `/api/health`, `/api/predict/coordinates`, `/api/predict/shapefile`, `/api/jobs/{id}`, `/api/files/{id}/{filename}`. CORS configured for `localhost:3000` + `*.vercel.app`. Env vars: `FLOOD_CHECKPOINT`, `FLOOD_GEE_KEY`, `FLOOD_JOB_DIR`, `FLOOD_FRONTEND_ORIGINS`.
+- `job_runner.py` — `JobState` dataclass + in-memory `JobRegistry` + `run_coordinates_job` / `run_shapefile_job`. Jobs are kicked off via FastAPI BackgroundTasks; the frontend polls `/api/jobs/{id}` every 2s.
+- `shapefile_handler.py` — `read_shapefile_zip()` extracts a zipped .shp into a temp dir, dissolves features, returns `(polygon, bbox, src_crs)` in EPSG:4326. `clip_raster_to_polygon()` clips prediction TIFs to the actual polygon (not just bbox) via `rasterio.mask`.
+- `area_calculator.py` — `compute_area_km2()` reprojects a binary mask to EPSG:6933 (equal-area) and sums pixel area. Used for the km² stats in API responses.
+- `raster_to_vector.py` — `class_map_to_shapefiles()` runs `rasterio.features.shapes()` per foreground class, writes `.shp` via geopandas, zips the four sidecars (`.shp/.shx/.dbf/.prj`) into one `.zip` per class for one-click download.
+- `tiled_predictor.py` — `predict_large_bbox()` for bboxes >~30 km wide. Splits into 0.3°×0.3° sub-tiles, fetches each from GEE, predicts, then mosaics class maps with `rasterio.merge`. Used by `job_runner.run_shapefile_job` when the polygon is large.
+- `inference.py` (existing) — gained `FloodPredictor.predict_from_polygon()` convenience wrapper.
+
+**Backend launcher**: `backend-dev.py` at project root starts uvicorn + ngrok in one process. Reads `NGROK_AUTH_TOKEN` from env; prints the public URL to paste into `frontend/.env.local` as `NEXT_PUBLIC_API_BASE`. Deps: `backend-requirements.txt` (FastAPI, uvicorn, python-multipart, pyngrok, geopandas, etc.).
+
+**Frontend (`frontend/`)** — Next.js 14 App Router, TypeScript, Tailwind. Single page (`app/page.tsx`) holds all state. Notion-like clean UI, light mode only:
+- `lib/api.ts` — `predictCoordinates`, `predictShapefile`, `pollJob`, `fileUrl`, `checkHealth`. Uses `NEXT_PUBLIC_API_BASE` env var.
+- `lib/types.ts` — mirrors backend pydantic schemas (`JobState`, `PredictionStats`, `CoordinatesRequest`, etc.).
+- `lib/map-config.ts` — MapLibre styles for ESRI satellite + OSM street basemaps, `INITIAL_VIEW`, layer ID constants.
+- `components/MapView.tsx` — MapLibre GL viewer. Native click-twice rectangle drawer (no `mapbox-gl-draw` — too flaky with MapLibre). Renders prediction PNG as a raster image source overlay using the bbox as bounds. Basemap toggle (satellite/street).
+- `components/InputPanel.tsx` — left sidebar; Tabs control switches between `CoordinatesTab` (4 number inputs + date), `TileTab` (uses MapView's drawn bbox), `ShapefileTab` (react-dropzone for .zip + date).
+- `components/ResultsPanel.tsx` — right sidebar; status badge + progress bar while running, then stats card + 6 download buttons (3 TIFs, 2 SHP zips, 1 PNG) when done.
+- `components/ui/` — small primitives: `Button`, `Input`, `Card`, `Tabs`. Notion palette in `tailwind.config.ts` (`bg`, `surface`, `border`, `text`, `muted`, `accent`, `flood`, `permanent`).
+
+**Conventions for the web app**:
+- File serving uses basenames only — `/api/files/{job_id}/{filename}`. Path traversal blocked in `api.get_file`.
+- Coordinates are always EPSG:4326. Shapefiles in any CRS get reprojected to EPSG:4326 in `shapefile_handler.read_shapefile_zip`.
+- Job IDs are UUIDs; outputs land in `<FLOOD_JOB_DIR>/<job_id>/`.
+- Frontend never touches absolute paths — backend returns `{filename: "xxx.tif"}` and frontend builds `${API_BASE}/api/files/${job_id}/${filename}` itself.
+- `predict_from_geotiff` and `predict_from_gee` (existing) handle single-tile inference; the new tiled flow is a wrapper for very large requests only.
+
+## Conventions
+
 - All scripts insert their own dir into `sys.path` (`sys.path.insert(0, os.path.dirname(__file__))`) so cross-imports work whether invoked from project root or `flood-detection-src/`.
 - Channel order and band-name keys in `BAND_STATS` / `BAND_ORDER` are load-bearing — keep them in sync with `inference.load_and_normalize` and the GEE band stack.
 - Label value `-1` is the universal "ignore" sentinel; any new loss/metric must filter it out.

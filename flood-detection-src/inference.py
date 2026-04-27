@@ -23,6 +23,11 @@ import numpy as np
 import torch
 import rasterio
 from rasterio.transform import from_bounds
+# Force non-interactive matplotlib backend BEFORE importing pyplot so the
+# default TkAgg backend isn't selected — Tk can only run on the main thread,
+# but our visualizations run inside FastAPI BackgroundTasks (worker thread).
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.colors import ListedColormap
@@ -57,6 +62,30 @@ class GEEDataFetcher:
             self._ee_initialized = True
             print("[GEE] Earth Engine initialized.")
 
+    @staticmethod
+    def _run_in_fresh_thread(fn, *args, **kwargs):
+        """
+        Run `fn` in a brand-new thread and wait for it. Used to give geedim's
+        internal asyncio.Runner a clean asyncio context for every download —
+        FastAPI's threadpool workers are reused, and geedim leaves the loop
+        in a "running" state which breaks the *next* call from the same thread.
+        A fresh OS thread has no asyncio state at all, so each download starts
+        clean.
+        """
+        import threading
+        result_box: dict = {}
+        def target():
+            try:
+                result_box["value"] = fn(*args, **kwargs)
+            except BaseException as e:
+                result_box["error"] = e
+        t = threading.Thread(target=target, daemon=True)
+        t.start()
+        t.join()
+        if "error" in result_box:
+            raise result_box["error"]
+        return result_box.get("value")
+
     def fetch(self,
               lon_min: float, lat_min: float,
               lon_max: float, lat_max: float,
@@ -81,17 +110,30 @@ class GEEDataFetcher:
         region = ee.Geometry.Rectangle([lon_min, lat_min, lon_max, lat_max])
 
         # --- Sentinel-1 ---
-        date_start = flood_date
-        date_end   = (np.datetime64(flood_date) + np.timedelta64(2, 'D')).astype(str)
-        s1 = (ee.ImageCollection("COPERNICUS/S1_GRD")
-              .filterBounds(region)
-              .filterDate(date_start, date_end)
-              .filter(ee.Filter.listContains("transmitterReceiverPolarisation", "VV"))
-              .filter(ee.Filter.listContains("transmitterReceiverPolarisation", "VH"))
-              .filter(ee.Filter.eq("instrumentMode", "IW"))
-              .select(["VV", "VH"])
-              .mean()
-              .clip(region))
+        # S1 revisit is 6-12 days; widen the search window so arbitrary
+        # bbox+date combinations don't return an empty collection.
+        from datetime import datetime, timedelta
+        d = datetime.strptime(flood_date, "%Y-%m-%d")
+        date_start = (d - timedelta(days=6)).strftime("%Y-%m-%d")
+        date_end   = (d + timedelta(days=6)).strftime("%Y-%m-%d")
+        s1_coll = (ee.ImageCollection("COPERNICUS/S1_GRD")
+                   .filterBounds(region)
+                   .filterDate(date_start, date_end)
+                   .filter(ee.Filter.listContains("transmitterReceiverPolarisation", "VV"))
+                   .filter(ee.Filter.listContains("transmitterReceiverPolarisation", "VH"))
+                   .filter(ee.Filter.eq("instrumentMode", "IW")))
+
+        n_s1 = s1_coll.size().getInfo()
+        if n_s1 == 0:
+            raise RuntimeError(
+                f"No Sentinel-1 images found for bbox "
+                f"({lon_min}, {lat_min}, {lon_max}, {lat_max}) within "
+                f"±6 days of {flood_date}. Try a different date — "
+                f"S1 revisit is 6-12 days."
+            )
+        print(f"[GEE] Found {n_s1} S1 acquisition(s) in {date_start}..{date_end}")
+
+        s1 = s1_coll.select(["VV", "VH"]).mean().clip(region)
 
         # --- NASA DEM ---
         dem = ee.Image("NASA/NASADEM_HGT/001").select("elevation").clip(region)
@@ -116,13 +158,19 @@ class GEEDataFetcher:
                    .addBands(jrc.rename("JRC"))
                    .addBands(hand.float().rename("HAND")))
 
-        # Download using geedim
+        # Download using geedim. Wrap in a fresh OS thread so geedim's
+        # asyncio.Runner gets a clean context (the FastAPI threadpool's
+        # worker threads are reused, which leaks asyncio state).
         os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
         img = geedim.MaskedImage(stacked)
-        img.download(output_path, region=region.getInfo(), scale=scale,
-                     crs="EPSG:4326", overwrite=True)
+        region_info = region.getInfo()  # do this on calling thread (no asyncio)
 
-        print(f"[GEE] Downloaded 6-band image → {output_path}")
+        def _do_download():
+            img.download(output_path, region=region_info, scale=scale,
+                         crs="EPSG:4326", overwrite=True)
+        self._run_in_fresh_thread(_do_download)
+
+        print(f"[GEE] Downloaded 6-band image -> {output_path}")
         return output_path
 
 
@@ -297,39 +345,45 @@ PERMANENT_RGB = (0.118, 0.565, 1.000)   # #1E90FF (blue)
 BACKGROUND_RGB = (0.92,  0.92,  0.92)   # light gray
 
 
+_FLOOD_U8     = np.array([int(c * 255) for c in FLOOD_RGB],     dtype=np.uint8)
+_PERMANENT_U8 = np.array([int(c * 255) for c in PERMANENT_RGB], dtype=np.uint8)
+_BG_U8        = np.array([int(c * 255) for c in BACKGROUND_RGB], dtype=np.uint8)
+
+
 def visualize_flood_map(flood_mask: np.ndarray,
                          permanent_mask: np.ndarray,
                          output_path: str,
-                         title: str = "Flood Inundation Map"):
+                         title: str = "Flood Inundation Map",
+                         max_dim: int = 2048):
     """
     Save a PNG with:
       - Red       : flood water
       - Blue      : permanent water
       - Light gray: non-flooded land
+
+    For very large prediction arrays (>2048 px in either dim) the output is
+    downsampled to keep memory and PNG size sane. The geo-aligned masks (TIF)
+    keep full resolution; this is just for the human-readable visualization.
     """
+    from PIL import Image  # bundled with matplotlib (Pillow)
+
     H, W = flood_mask.shape
-    rgb = np.ones((H, W, 3), dtype=np.float32) * np.array(BACKGROUND_RGB)
 
-    rgb[permanent_mask == 1] = PERMANENT_RGB
-    rgb[flood_mask     == 1] = FLOOD_RGB
+    # Downsample if huge — stride sampling is plenty for a visualization
+    if max(H, W) > max_dim:
+        stride = max(1, max(H, W) // max_dim)
+        flood_mask     = flood_mask[::stride, ::stride]
+        permanent_mask = permanent_mask[::stride, ::stride]
+        H, W = flood_mask.shape
 
-    fig, ax = plt.subplots(figsize=(12, 8))
-    ax.imshow(rgb)
-    ax.set_title(title, fontsize=14, fontweight="bold")
-    ax.axis("off")
+    rgb = np.broadcast_to(_BG_U8, (H, W, 3)).copy()
+    rgb[permanent_mask == 1] = _PERMANENT_U8
+    rgb[flood_mask     == 1] = _FLOOD_U8
 
-    legend_elements = [
-        mpatches.Patch(facecolor="#E63946", label="Flood water"),
-        mpatches.Patch(facecolor="#1E90FF", label="Permanent water"),
-        mpatches.Patch(facecolor="#EBEBEB", label="Non-flooded land"),
-    ]
-    ax.legend(handles=legend_elements, loc="lower right", fontsize=10,
-              framealpha=0.9)
-
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=150, bbox_inches="tight")
-    plt.close()
-    print(f"[Visualization] Saved → {output_path}")
+    img = Image.fromarray(rgb, mode="RGB")
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+    img.save(output_path, "PNG", optimize=True)
+    print(f"[Visualization] Saved -> {output_path}  ({W}x{H})")
 
 
 def save_geotiff(array: np.ndarray, profile: dict, output_path: str):
@@ -482,6 +536,39 @@ class FloodPredictor:
                            flood_date, tif_path)
 
         return self.predict_from_geotiff(tif_path, output_dir)
+
+    def predict_from_polygon(self,
+                              polygon_4326,
+                              flood_date: str,
+                              output_dir: str,
+                              clip_to_polygon: bool = True) -> dict:
+        """
+        Predict over a shapely polygon (in EPSG:4326): fetches its bounding
+        box from GEE, runs inference, then optionally clips the rasters to
+        the actual polygon shape (not just the bbox).
+
+        For polygons larger than ~30 km wide, prefer the tiled predictor
+        (see tiled_predictor.predict_large_bbox) — this method does a single
+        GEE fetch and may hit GEE size limits for large regions.
+        """
+        bbox = polygon_4326.bounds   # (minx, miny, maxx, maxy)
+        results = self.predict_from_gee(bbox[0], bbox[1], bbox[2], bbox[3],
+                                         flood_date, output_dir)
+        if not clip_to_polygon:
+            return results
+
+        # Clip each raster output to the polygon's actual shape
+        from shapefile_handler import clip_raster_to_polygon  # local import
+        for key in ("class_tif", "flood_tif", "perm_tif",
+                    "flood_prob_tif", "permanent_prob_tif"):
+            if key in results and os.path.exists(results[key]):
+                clipped = results[key].replace(".tif", "_clipped.tif")
+                nodata_val = 0 if "tif" in key and "prob" not in key else 0.0
+                clip_raster_to_polygon(results[key], polygon_4326,
+                                        "EPSG:4326", clipped,
+                                        nodata_value=nodata_val)
+                os.replace(clipped, results[key])
+        return results
 
 
 # ---------------------------------------------------------------------------
