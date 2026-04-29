@@ -1,7 +1,7 @@
 """
 Inference pipeline for the trained ResNet50 + UNet++ flood model.
 
-Implements (from DeepSARFlood paper, IIT Delhi 2025 — extended to 3-class):
+Implements (from DeepSARFlood paper 2025 — extended to 3-class):
   1. GEE data fetching — Sentinel-1 VV/VH, DEM, Slope, JRC, HAND
   2. Preprocessing & band normalization
   3. Sliding window inference (512×512, stride=400) — full softmax averaged

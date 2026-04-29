@@ -1,7 +1,7 @@
 """
 Data augmentation pipeline using Albumentations.
 
-Paper settings (DeepSARFlood, IIT Delhi 2025):
+Paper settings (DeepSARFlood 2025):
   - Augmentations: crop, horizontal flip, vertical flip, random rotation
   - Probability per augmentation: 0.1 – 0.3
   - Non-augmented data remains the predominant part of training set

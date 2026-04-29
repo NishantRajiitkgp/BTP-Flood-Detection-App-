@@ -275,5 +275,4 @@ BTP new/
 # 📚 See also
 
 - [`CLAUDE.md`](CLAUDE.md) — architecture notes for code-assistant sessions
-- `IIT_Delhi.pdf` — the original DeepSARFlood paper
 - `NoteBook_final.ipynb` — Kaggle notebook for training/inference experiments

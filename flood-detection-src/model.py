@@ -1,7 +1,7 @@
 """
 ResNet50 + UNet++ encoder-decoder with Multi-Task Learning heads.
 
-Architecture (from DeepSARFlood paper, IIT Delhi 2025):
+Architecture (from DeepSARFlood paper 2025):
   - Encoder : ResNet50 (timm, pretrained ImageNet), patched for 6-channel input
   - Decoder : UNet++ with dense nested skip connections + SCSE attention
   - Head 1  : Segmentation head  → 3-class softmax (non-water / flood / permanent)

@@ -1,6 +1,6 @@
 """
 Loss functions for 3-class flood/permanent-water segmentation
-(DeepSARFlood paper, IIT Delhi 2025 — extended for multi-class).
+(DeepSARFlood paper 2025 — extended for multi-class).
 
 Class layout:
     0 = non-water (background)

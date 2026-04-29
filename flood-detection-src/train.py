@@ -1,7 +1,7 @@
 """
 Training script for the ResNet50 + UNet++ flood segmentation model.
 
-Implements (from DeepSARFlood paper, IIT Delhi 2025):
+Implements (from DeepSARFlood paper 2025):
   1. Single-model training with MTL (flood seg + MNDWI regression)
   2. Four training runs with different loss functions (for model soup)
   3. Greedy model soup: weight-averages checkpoints that improve val IoU

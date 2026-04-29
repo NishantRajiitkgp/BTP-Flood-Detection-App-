@@ -2,6 +2,7 @@
 BTP-SenData/
 final-sendata/
 
+
 # --- Trained checkpoints (huge, hosted on Kaggle) ---
 checkpoints-v2/
 checkpoints-v3/
@@ -49,3 +50,4 @@ Thumbs.db
 
 # --- Claude Code state ---
 .claude/
+CLAUDE.md
