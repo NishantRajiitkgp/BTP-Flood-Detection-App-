@@ -259,6 +259,41 @@ def delete_job(job_id: str):
     return {"deleted": True, "job_id": job_id}
 
 
+@app.post("/api/jobs/cleanup")
+def cleanup_old_jobs(keep_last: int = 5):
+    """
+    Delete all but the `keep_last` most recent job folders. Each job's
+    outputs can be ~500 MB for a large bbox; this prevents the disk from
+    filling up after many demos.
+    """
+    if not os.path.isdir(JOB_BASE_DIR):
+        return {"deleted": 0, "kept": 0}
+
+    entries = []
+    for name in os.listdir(JOB_BASE_DIR):
+        p = os.path.join(JOB_BASE_DIR, name)
+        if os.path.isdir(p):
+            entries.append((p, os.path.getmtime(p)))
+    entries.sort(key=lambda e: e[1], reverse=True)   # newest first
+
+    to_keep, to_delete = entries[:keep_last], entries[keep_last:]
+    bytes_freed = 0
+    for path, _ in to_delete:
+        for root, _dirs, files in os.walk(path):
+            for f in files:
+                try:
+                    bytes_freed += os.path.getsize(os.path.join(root, f))
+                except OSError:
+                    pass
+        shutil.rmtree(path, ignore_errors=True)
+
+    return {
+        "deleted":  len(to_delete),
+        "kept":     len(to_keep),
+        "freed_mb": round(bytes_freed / 1e6, 1),
+    }
+
+
 # ---------------------------------------------------------------------------
 # Local dev entrypoint
 # ---------------------------------------------------------------------------

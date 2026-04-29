@@ -24,7 +24,10 @@ import rasterio
 sys.path.insert(0, os.path.dirname(__file__))
 
 from inference         import (FloodPredictor, sliding_window_predict, postprocess,
-                                visualize_flood_map, save_geotiff, load_and_normalize)
+                                visualize_flood_map, save_geotiff, load_and_normalize,
+                                make_overlay_png, make_overlay_water_png,
+                                make_overlay_landmask_png,
+                                make_overlay_tif, make_overlay_color_tif)
 from area_calculator   import compute_area_km2, compute_total_extent_km2
 from raster_to_vector  import class_map_to_shapefiles
 from shapefile_handler import (read_shapefile_zip, clip_raster_to_polygon,
@@ -112,26 +115,56 @@ def _build_outputs_for_class_map(class_map: np.ndarray,
                                   perm_mask: np.ndarray,
                                   profile: dict,
                                   out_dir: str,
-                                  base_name: str) -> tuple[dict, dict]:
+                                  base_name: str,
+                                  sentinel2_path: str | None = None) -> tuple[dict, dict]:
     """
-    Persist all five GeoTIFFs + the PNG + two zipped shapefiles, compute area
-    statistics, and return (stats, files_written).
+    Persist all GeoTIFFs + PNGs + zipped shapefiles, compute area statistics,
+    return (stats, files_written).
+
+    Outputs (relative to out_dir):
+      - <base>_class_map.tif        : single-band uint8 0/1/2
+      - <base>_flood_mask.tif       : binary flood
+      - <base>_permanent_water.tif  : binary permanent water
+      - <base>_flood_map.png        : "report style" RGB PNG (red/blue/gray)
+      - <base>_overlay.png          : RGBA PNG, transparent non-water — for map
+      - <base>_overlay.tif          : RGB GeoTIFF, S2 base + red/blue burned in
+      - <base>_flood_polygons.zip   : flood polygons as zipped shapefile
+      - <base>_permanent_polygons.zip
     """
     profile_out = profile.copy()
     profile_out.update({"driver": "GTiff", "count": 1, "dtype": "uint8"})
     profile_out.pop("nodata", None)
 
     written = {}
-    written["class_tif"] = os.path.join(out_dir, f"{base_name}_class_map.tif")
-    written["flood_tif"] = os.path.join(out_dir, f"{base_name}_flood_mask.tif")
-    written["perm_tif"]  = os.path.join(out_dir, f"{base_name}_permanent_water.tif")
-    written["png"]       = os.path.join(out_dir, f"{base_name}_flood_map.png")
+    written["class_tif"]         = os.path.join(out_dir, f"{base_name}_class_map.tif")
+    written["flood_tif"]         = os.path.join(out_dir, f"{base_name}_flood_mask.tif")
+    written["perm_tif"]          = os.path.join(out_dir, f"{base_name}_permanent_water.tif")
+    written["png"]               = os.path.join(out_dir, f"{base_name}_flood_map.png")
+    written["overlay_water_png"] = os.path.join(out_dir, f"{base_name}_overlay_water.png")
+    written["overlay_landmask_png"] = os.path.join(out_dir, f"{base_name}_overlay_landmask.png")
+    written["overlay_png"]       = os.path.join(out_dir, f"{base_name}_overlay.png")
+    written["overlay_tif"]       = os.path.join(out_dir, f"{base_name}_overlay.tif")
+    written["overlay_color_tif"] = os.path.join(out_dir, f"{base_name}_overlay_color.tif")
 
     save_geotiff(class_map.astype(np.uint8), profile_out, written["class_tif"])
     save_geotiff(flood_mask.astype(np.uint8), profile_out, written["flood_tif"])
     save_geotiff(perm_mask.astype(np.uint8),  profile_out, written["perm_tif"])
+
+    # Visualization outputs:
+    #  - report PNG (white/red/blue, for embedding in reports)
+    #  - water-only RGBA PNG (constant opacity — slider must NOT affect this)
+    #  - landmask RGBA PNG (slider DOES affect this)
+    #  - combined overlay PNG (legacy, kept for fallback)
+    #  - overlay TIF (S2 base + red/blue burned in, self-contained QGIS layer)
+    #  - overlay color TIF (RGBA, transparent non-water — drop on top of any basemap)
     visualize_flood_map(flood_mask, perm_mask, written["png"],
-                        title=f"Flood Map — {base_name}")
+                        title=f"Flood Map - {base_name}")
+    make_overlay_water_png(flood_mask, perm_mask, written["overlay_water_png"])
+    make_overlay_landmask_png(flood_mask, perm_mask, written["overlay_landmask_png"])
+    make_overlay_png(flood_mask, perm_mask, written["overlay_png"])
+    make_overlay_tif(class_map, profile, written["overlay_tif"],
+                      sentinel2_path=sentinel2_path)
+    make_overlay_color_tif(class_map, profile, written["overlay_color_tif"])
 
     # Vector exports (zipped .shp bundles)
     shp_files = class_map_to_shapefiles(
@@ -199,17 +232,27 @@ def run_coordinates_job(job: JobState,
         _update(job, progress=0.75, message="Postprocessing predictions...")
         class_map, flood_mask, perm_mask = postprocess(prob_map, raw[3], raw[4])
 
-        _update(job, progress=0.85, message="Computing area + writing outputs...")
+        # Fetch Sentinel-2 RGB for the overlay visualization (best-effort).
+        # If S2 has no clear image in ±30 days, overlay TIF falls back to flat gray.
+        _update(job, progress=0.80, message="Fetching Sentinel-2 RGB for overlay...")
+        s2_tif = os.path.join(out_dir, f"{base_name}_s2_rgb.tif")
+        s2_path = predictor.fetcher.fetch_sentinel2_rgb(
+            lon_min, lat_min, lon_max, lat_max, flood_date, s2_tif
+        )
+
+        _update(job, progress=0.90, message="Computing area + writing outputs...")
         stats, written = _build_outputs_for_class_map(
-            class_map, flood_mask, perm_mask, profile, out_dir, base_name
+            class_map, flood_mask, perm_mask, profile, out_dir, base_name,
+            sentinel2_path=s2_path,
         )
         stats["bbox"] = [lon_min, lat_min, lon_max, lat_max]
         stats["date"] = flood_date
+        stats["has_satellite_overlay"] = bool(s2_path)
 
         job.stats = stats
         job.files = _public_files(job.id, out_dir, written)
         _update(job, status="done", progress=1.0,
-                message=f"Done. Flood area: {stats['flood_km2']:.2f} km².")
+                message=f"Done. Flood area: {stats['flood_km2']:.2f} km^2.")
 
     except Exception as e:
         job.error = f"{type(e).__name__}: {e}\n{traceback.format_exc()}"
@@ -279,9 +322,17 @@ def run_shapefile_job(job: JobState,
         flood_mask = (class_map == 1).astype(np.uint8)
         perm_mask  = (class_map == 2).astype(np.uint8)
 
-        _update(job, progress=0.90, message="Computing area + writing outputs...")
+        # Fetch Sentinel-2 RGB for overlay (best-effort)
+        _update(job, progress=0.84, message="Fetching Sentinel-2 RGB for overlay...")
+        s2_tif = os.path.join(out_dir, f"{base_name}_s2_rgb.tif")
+        s2_path = predictor.fetcher.fetch_sentinel2_rgb(
+            lon_min, lat_min, lon_max, lat_max, flood_date, s2_tif
+        )
+
+        _update(job, progress=0.92, message="Computing area + writing outputs...")
         stats, written = _build_outputs_for_class_map(
-            class_map, flood_mask, perm_mask, profile_clipped, out_dir, base_name
+            class_map, flood_mask, perm_mask, profile_clipped, out_dir, base_name,
+            sentinel2_path=s2_path,
         )
         # Replace the (already-saved) clipped class_tif with the canonical name
         os.replace(clipped_class_tif, written["class_tif"])
@@ -290,11 +341,12 @@ def run_shapefile_job(job: JobState,
         stats["date"] = flood_date
         stats["bbox_size_km"] = [round(width_km, 2), round(height_km, 2)]
         stats["source_crs"] = str(src_crs) if src_crs else "EPSG:4326 (assumed)"
+        stats["has_satellite_overlay"] = bool(s2_path)
 
         job.stats = stats
         job.files = _public_files(job.id, out_dir, written)
         _update(job, status="done", progress=1.0,
-                message=f"Done. Flood area: {stats['flood_km2']:.2f} km².")
+                message=f"Done. Flood area: {stats['flood_km2']:.2f} km^2.")
 
     except Exception as e:
         job.error = f"{type(e).__name__}: {e}\n{traceback.format_exc()}"

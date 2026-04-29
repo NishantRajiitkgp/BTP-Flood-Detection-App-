@@ -14,15 +14,21 @@ export interface PredictionStats {
   bbox_size_km?: [number, number];
   source_crs?: string;
   n_tiles?: number;
+  has_satellite_overlay?: boolean;
 }
 
 export interface JobFiles {
-  class_tif?: string;
-  flood_tif?: string;
-  perm_tif?: string;
+  class_tif?: string;             // single-band uint8 0/1/2
+  flood_tif?: string;             // binary flood mask
+  perm_tif?: string;              // binary permanent water mask
+  overlay_tif?: string;           // RGB GeoTIFF: S2 base + red/blue burned in
+  overlay_color_tif?: string;     // RGBA TIF: transparent non-water, only red/blue
+  overlay_png?: string;           // legacy combined overlay
+  overlay_water_png?: string;     // RGBA: opaque red/blue ONLY (constant opacity)
+  overlay_landmask_png?: string;  // RGBA: gray non-water ONLY (slider-controlled)
+  png?: string;                   // "report style" RGB PNG (red/blue/gray)
   flood_shp_zip?: string;
   perm_shp_zip?: string;
-  png?: string;
   // Filenames are basenames; the URL is f"{API_BASE}/api/files/{job_id}/{filename}"
 }
 

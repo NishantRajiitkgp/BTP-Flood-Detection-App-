@@ -62,6 +62,11 @@ export const INITIAL_VIEW = {
 };
 
 // IDs we'll add to the map dynamically for prediction overlays + drawn shapes
+export const WATER_SOURCE_ID    = "prediction-water-src";    // red/blue, constant opacity
+export const WATER_LAYER_ID     = "prediction-water-layer";
+export const LANDMASK_SOURCE_ID = "prediction-landmask-src"; // gray non-water, slider-controlled
+export const LANDMASK_LAYER_ID  = "prediction-landmask-layer";
+// Legacy single-overlay IDs (kept for fallback when the backend doesn't ship two layers)
 export const PREDICTION_SOURCE_ID = "prediction-overlay-src";
 export const PREDICTION_LAYER_ID = "prediction-overlay-layer";
 export const POLYGON_SOURCE_ID = "user-polygon-src";

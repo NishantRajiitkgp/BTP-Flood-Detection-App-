@@ -20,6 +20,7 @@ export default function HomePage() {
   const [job, setJob]               = useState<JobState | null>(null);
   const [drawnBbox, setDrawnBbox]   = useState<Bbox | null>(null);
   const [activeTab, setActiveTab]   = useState<TabValue>("coords");
+  const [landmaskOpacity, setLandmaskOpacity] = useState(0.6);
 
   const busy = job?.status === "pending" || job?.status === "running";
 
@@ -77,13 +78,22 @@ export default function HomePage() {
     }
   }, []);
 
-  // Render the prediction PNG over the map once the job is done.
-  // Memoized so MapView's effect doesn't refire on every parent render.
+  // Two-layer overlay: water (red/blue, constant) + landmask (gray, slider-controlled).
+  // Falls back to the combined overlay_png if backend doesn't ship the split layers.
   const overlay = useMemo(() => {
     if (job?.status !== "done") return null;
-    if (!job.files?.png || !job.stats?.bbox) return null;
-    return { url: fileUrl(job.id, job.files.png), bbox: job.stats.bbox };
-  }, [job?.status, job?.id, job?.files?.png, job?.stats?.bbox]);
+    if (!job.stats?.bbox) return null;
+    const f = job.files;
+    if (!f) return null;
+    const waterFile    = f.overlay_water_png || f.overlay_png || f.png;
+    const landmaskFile = f.overlay_landmask_png || f.overlay_water_png || f.png;
+    if (!waterFile || !landmaskFile) return null;
+    return {
+      waterUrl:    fileUrl(job.id, waterFile),
+      landmaskUrl: fileUrl(job.id, landmaskFile),
+      bbox:        job.stats.bbox,
+    };
+  }, [job?.status, job?.id, job?.files, job?.stats?.bbox]);
 
   return (
     <main className="relative h-screen w-screen overflow-hidden flex">
@@ -93,6 +103,7 @@ export default function HomePage() {
           drawingEnabled={activeTab === "tile"}
           onBboxDrawn={setDrawnBbox}
           predictionOverlay={overlay}
+          landmaskOpacity={landmaskOpacity}
         />
       </div>
 
@@ -112,7 +123,11 @@ export default function HomePage() {
 
       {/* Right results sidebar */}
       <div className="relative z-10 h-full">
-        <ResultsPanel job={job} />
+        <ResultsPanel
+          job={job}
+          landmaskOpacity={landmaskOpacity}
+          onLandmaskOpacityChange={setLandmaskOpacity}
+        />
       </div>
     </main>
   );

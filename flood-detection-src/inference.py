@@ -23,14 +23,10 @@ import numpy as np
 import torch
 import rasterio
 from rasterio.transform import from_bounds
-# Force non-interactive matplotlib backend BEFORE importing pyplot so the
-# default TkAgg backend isn't selected — Tk can only run on the main thread,
-# but our visualizations run inside FastAPI BackgroundTasks (worker thread).
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.colors import ListedColormap
+# Visualization uses PIL (Pillow) — no matplotlib dependency. PIL works
+# with uint8 RGB directly, uses ~14× less memory than matplotlib's float64
+# RGBA pipeline, and avoids matplotlib's Tk backend (which can't run from
+# FastAPI BackgroundTask worker threads).
 
 sys.path.insert(0, os.path.dirname(__file__))
 
@@ -171,6 +167,64 @@ class GEEDataFetcher:
         self._run_in_fresh_thread(_do_download)
 
         print(f"[GEE] Downloaded 6-band image -> {output_path}")
+        return output_path
+
+    def fetch_sentinel2_rgb(self,
+                             lon_min: float, lat_min: float,
+                             lon_max: float, lat_max: float,
+                             flood_date: str,
+                             output_path: str,
+                             scale: int = 10,
+                             window_days: int = 30) -> str | None:
+        """
+        Fetch a cloud-free Sentinel-2 RGB composite for the bbox + date range.
+
+        Used purely for visualization (overlay base image). Median composite
+        over [date - window_days, date + window_days], filtered for low-cloud
+        scenes. Returns the output path on success, or None if no usable
+        Sentinel-2 imagery exists for the request (caller falls back to flat
+        gray base in the overlay TIF).
+        """
+        self._init_ee()
+        import ee
+        import geedim
+
+        from datetime import datetime, timedelta
+        d = datetime.strptime(flood_date, "%Y-%m-%d")
+        date_start = (d - timedelta(days=window_days)).strftime("%Y-%m-%d")
+        date_end   = (d + timedelta(days=window_days)).strftime("%Y-%m-%d")
+
+        region = ee.Geometry.Rectangle([lon_min, lat_min, lon_max, lat_max])
+        s2 = (ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+              .filterBounds(region)
+              .filterDate(date_start, date_end)
+              .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 60)))
+
+        n_s2 = s2.size().getInfo()
+        if n_s2 == 0:
+            print(f"[GEE] No Sentinel-2 images found for "
+                  f"{date_start}..{date_end} (cloudy <60%). "
+                  f"Overlay TIF will use flat-gray base.")
+            return None
+
+        composite = (s2.median()
+                     .select(["B4", "B3", "B2"])    # red, green, blue
+                     .clip(region))
+
+        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+        img = geedim.MaskedImage(composite)
+        region_info = region.getInfo()
+
+        def _do_download():
+            img.download(output_path, region=region_info, scale=scale,
+                         crs="EPSG:4326", overwrite=True)
+        try:
+            self._run_in_fresh_thread(_do_download)
+        except Exception as e:
+            print(f"[GEE] Sentinel-2 fetch failed: {e}. Overlay will use flat-gray base.")
+            return None
+
+        print(f"[GEE] Downloaded Sentinel-2 RGB ({n_s2} scenes composited) -> {output_path}")
         return output_path
 
 
@@ -340,9 +394,9 @@ def postprocess(prob_map: np.ndarray,
 # Visualization
 # ---------------------------------------------------------------------------
 
-FLOOD_RGB     = (0.902, 0.224, 0.275)   # #E63946 (red)
-PERMANENT_RGB = (0.118, 0.565, 1.000)   # #1E90FF (blue)
-BACKGROUND_RGB = (0.92,  0.92,  0.92)   # light gray
+FLOOD_RGB     = (0.722, 0.110, 0.110)   # #B91C1C — Tailwind red-700, dark red
+PERMANENT_RGB = (0.114, 0.306, 0.847)   # #1D4ED8 — Tailwind blue-700, dark blue
+BACKGROUND_RGB = (0.92,  0.92,  0.92)   # light gray (non-water mask)
 
 
 _FLOOD_U8     = np.array([int(c * 255) for c in FLOOD_RGB],     dtype=np.uint8)
@@ -350,40 +404,286 @@ _PERMANENT_U8 = np.array([int(c * 255) for c in PERMANENT_RGB], dtype=np.uint8)
 _BG_U8        = np.array([int(c * 255) for c in BACKGROUND_RGB], dtype=np.uint8)
 
 
+def _maybe_downsample(masks: list[np.ndarray], max_dim: int):
+    """Stride-downsample a list of HxW masks together if any dim > max_dim."""
+    H, W = masks[0].shape
+    if max(H, W) <= max_dim:
+        return masks
+    stride = max(1, max(H, W) // max_dim)
+    return [m[::stride, ::stride] for m in masks]
+
+
 def visualize_flood_map(flood_mask: np.ndarray,
                          permanent_mask: np.ndarray,
                          output_path: str,
                          title: str = "Flood Inundation Map",
-                         max_dim: int = 2048):
+                         max_dim: int = 4096):
     """
-    Save a PNG with:
-      - Red       : flood water
-      - Blue      : permanent water
-      - Light gray: non-flooded land
-
-    For very large prediction arrays (>2048 px in either dim) the output is
-    downsampled to keep memory and PNG size sane. The geo-aligned masks (TIF)
-    keep full resolution; this is just for the human-readable visualization.
+    "Report style" PNG: solid red flood, blue permanent, light-gray land.
+    Used for embedding in reports and slide decks.
     """
-    from PIL import Image  # bundled with matplotlib (Pillow)
-
+    from PIL import Image
+    flood_mask, permanent_mask = _maybe_downsample(
+        [flood_mask, permanent_mask], max_dim
+    )
     H, W = flood_mask.shape
-
-    # Downsample if huge — stride sampling is plenty for a visualization
-    if max(H, W) > max_dim:
-        stride = max(1, max(H, W) // max_dim)
-        flood_mask     = flood_mask[::stride, ::stride]
-        permanent_mask = permanent_mask[::stride, ::stride]
-        H, W = flood_mask.shape
 
     rgb = np.broadcast_to(_BG_U8, (H, W, 3)).copy()
     rgb[permanent_mask == 1] = _PERMANENT_U8
     rgb[flood_mask     == 1] = _FLOOD_U8
 
-    img = Image.fromarray(rgb, mode="RGB")
+    Image.fromarray(rgb, mode="RGB").save(output_path, "PNG", optimize=True)
+    print(f"[Viz] report PNG  -> {output_path}  ({W}x{H})")
+
+
+def _smooth_edges(mask_u8: np.ndarray, blur_radius: float = 0.0) -> np.ndarray:
+    """
+    Optional light Gaussian smoothing on a 0/255 alpha channel.
+
+    Disabled by default — for water-dense scenes (coastal regions, large
+    floodplains) even a 0.5-pixel blur bleeds the red/blue tint into the
+    surrounding land, making the satellite imagery look stained. Keeping
+    the masks crisp is the better trade-off; the slight pixelation at
+    very-high zoom comes from the model's native 10 m resolution and can't
+    be fixed with smoothing.
+    """
+    if blur_radius <= 0:
+        return mask_u8
+    from PIL import Image, ImageFilter
+    return np.array(
+        Image.fromarray(mask_u8, mode="L").filter(
+            ImageFilter.GaussianBlur(radius=blur_radius)
+        )
+    )
+
+
+def make_overlay_water_png(flood_mask: np.ndarray,
+                            permanent_mask: np.ndarray,
+                            output_path: str,
+                            max_dim: int = 8192):
+    """
+    Map overlay layer 1 — only flood (red) + permanent (blue), full opacity,
+    transparent everywhere else. The user's opacity slider should NEVER
+    change this layer's appearance.
+    """
+    from PIL import Image
+    flood_mask, permanent_mask = _maybe_downsample(
+        [flood_mask, permanent_mask], max_dim
+    )
+    H, W = flood_mask.shape
+
+    rgba = np.zeros((H, W, 4), dtype=np.uint8)
+    fl = flood_mask     == 1
+    pm = permanent_mask == 1
+    rgba[fl, 0:3] = _FLOOD_U8
+    rgba[pm, 0:3] = _PERMANENT_U8
+
+    alpha = np.zeros((H, W), dtype=np.uint8)
+    alpha[fl | pm] = 255
+    alpha = _smooth_edges(alpha, blur_radius=0.0)
+    rgba[..., 3] = alpha
+
+    Image.fromarray(rgba, mode="RGBA").save(output_path, "PNG", optimize=True)
+    print(f"[Viz] water-only PNG    -> {output_path}  ({W}x{H}, RGBA, opaque red/blue)")
+
+
+def make_overlay_landmask_png(flood_mask: np.ndarray,
+                               permanent_mask: np.ndarray,
+                               output_path: str,
+                               max_dim: int = 8192,
+                               land_alpha: int = 200):
+    """
+    Map overlay layer 2 — only the light-gray non-water mask. Transparent
+    over flood/permanent water pixels. The user's opacity slider controls
+    THIS layer's `raster-opacity` so the satellite basemap fades in/out
+    on the dry land while red/blue water stays constant.
+    """
+    from PIL import Image
+    flood_mask, permanent_mask = _maybe_downsample(
+        [flood_mask, permanent_mask], max_dim
+    )
+    H, W = flood_mask.shape
+
+    rgba = np.zeros((H, W, 4), dtype=np.uint8)
+    non_water = (flood_mask == 0) & (permanent_mask == 0)
+    rgba[non_water, 0:3] = _BG_U8
+
+    alpha = np.zeros((H, W), dtype=np.uint8)
+    alpha[non_water] = land_alpha
+    alpha = _smooth_edges(alpha, blur_radius=0.0)
+    rgba[..., 3] = alpha
+
+    Image.fromarray(rgba, mode="RGBA").save(output_path, "PNG", optimize=True)
+    print(f"[Viz] landmask PNG      -> {output_path}  ({W}x{H}, RGBA, slider-controlled)")
+
+
+def make_overlay_png(flood_mask: np.ndarray,
+                      permanent_mask: np.ndarray,
+                      output_path: str,
+                      max_dim: int = 8192,
+                      water_alpha: int = 230):
+    """
+    Combined overlay PNG (kept for backward compatibility): RGBA with
+    transparent non-water + opaque red/blue water. Frontend prefers the
+    two-layer split (water + landmask) so the slider only affects the gray.
+    """
+    from PIL import Image
+    flood_mask, permanent_mask = _maybe_downsample(
+        [flood_mask, permanent_mask], max_dim
+    )
+    H, W = flood_mask.shape
+
+    rgba = np.zeros((H, W, 4), dtype=np.uint8)
+    fl = flood_mask     == 1
+    pm = permanent_mask == 1
+    rgba[fl, 0:3] = _FLOOD_U8
+    rgba[pm, 0:3] = _PERMANENT_U8
+    alpha = np.zeros((H, W), dtype=np.uint8)
+    alpha[fl | pm] = water_alpha
+    alpha = _smooth_edges(alpha, blur_radius=0.0)
+    rgba[..., 3] = alpha
+
+    Image.fromarray(rgba, mode="RGBA").save(output_path, "PNG", optimize=True)
+    print(f"[Viz] overlay PNG       -> {output_path}  ({W}x{H}, RGBA, combined)")
+
+
+def make_overlay_tif(class_map: np.ndarray,
+                      profile: dict,
+                      output_path: str,
+                      sentinel2_path: str | None = None,
+                      water_alpha: float = 0.85):
+    """
+    Self-contained colored GeoTIFF: Sentinel-2 RGB underneath + dark red /
+    dark blue burned in where flood/permanent. Non-flood pixels keep the
+    real satellite imagery — NO gray overlay. Opens directly in QGIS.
+
+    Args:
+        class_map        : (H, W) uint8 with 0/1/2
+        profile          : rasterio profile of class_map (transform, crs, etc.)
+        output_path      : where to write the RGB GeoTIFF
+        sentinel2_path   : optional path to a 3-band S2 RGB GeoTIFF.
+                           If None, uses a flat dark-gray base.
+        water_alpha      : how strongly to tint water pixels (0=none, 1=solid).
+                           Default 0.85 — almost-solid red/blue with a hint
+                           of the underlying satellite for realism.
+    """
+    from rasterio.warp import reproject, Resampling
+
+    H, W = class_map.shape
+
+    # 1. Build / load the base RGB layer (uint8, HxWx3)
+    if sentinel2_path and os.path.exists(sentinel2_path):
+        with rasterio.open(sentinel2_path) as s2_src:
+            s2_data = np.zeros((3, H, W), dtype=np.float32)
+            for i in range(3):
+                reproject(
+                    source=rasterio.band(s2_src, i + 1),
+                    destination=s2_data[i],
+                    src_transform=s2_src.transform, src_crs=s2_src.crs,
+                    dst_transform=profile["transform"], dst_crs=profile["crs"],
+                    resampling=Resampling.bilinear,
+                )
+        # Per-band 2-98 percentile stretch — adapts to whatever range the
+        # GEE S2 asset returns (water-dominated scenes have very low
+        # reflectance, vegetation/urban much higher).
+        bands = []
+        for i in range(3):
+            band = s2_data[i]
+            valid = band[band > 0]   # drop nodata
+            if valid.size == 0:
+                bands.append(np.zeros((H, W), dtype=np.uint8))
+                continue
+            lo, hi = np.percentile(valid, [2, 98])
+            if hi - lo < 1:
+                hi = lo + 1   # avoid div-by-zero on flat patches
+            stretched = np.clip((band - lo) / (hi - lo) * 255.0, 0, 255)
+            bands.append(stretched.astype(np.uint8))
+        base_rgb = np.stack(bands, axis=-1)   # HxWx3
+    else:
+        # Flat dark-gray base when no S2 imagery available
+        base_rgb = np.full((H, W, 3), 60, dtype=np.uint8)
+
+    # 2. Blend the prediction colors on top
+    out_rgb = base_rgb.astype(np.float32)
+    flood_mask     = class_map == 1
+    permanent_mask = class_map == 2
+
+    # Per-pixel: (1 - alpha) * base + alpha * tint_color
+    if flood_mask.any():
+        out_rgb[flood_mask] = (
+            (1 - water_alpha) * base_rgb[flood_mask].astype(np.float32)
+            + water_alpha * _FLOOD_U8.astype(np.float32)
+        )
+    if permanent_mask.any():
+        out_rgb[permanent_mask] = (
+            (1 - water_alpha) * base_rgb[permanent_mask].astype(np.float32)
+            + water_alpha * _PERMANENT_U8.astype(np.float32)
+        )
+    out_rgb = np.clip(out_rgb, 0, 255).astype(np.uint8)
+
+    # 3. Write as 3-band uint8 GeoTIFF
+    out_profile = profile.copy()
+    out_profile.update({
+        "driver":   "GTiff",
+        "count":    3,
+        "dtype":    "uint8",
+        "compress": "deflate",
+        "photometric": "RGB",
+    })
+    out_profile.pop("nodata", None)
+
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
-    img.save(output_path, "PNG", optimize=True)
-    print(f"[Visualization] Saved -> {output_path}  ({W}x{H})")
+    with rasterio.open(output_path, "w", **out_profile) as dst:
+        for i in range(3):
+            dst.write(out_rgb[..., i], i + 1)
+    print(f"[Viz] overlay TIF -> {output_path}  "
+          f"(S2 base: {'yes' if sentinel2_path else 'no'})")
+
+
+def make_overlay_color_tif(class_map: np.ndarray,
+                            profile: dict,
+                            output_path: str):
+    """
+    RGBA GeoTIFF with **only** red/blue prediction polygons — non-water is
+    fully transparent (alpha=0). Open this on top of ANY satellite basemap
+    in QGIS and you'll see the prediction as a transparent overlay, with
+    your basemap visible through dry land.
+
+    Use this instead of overlay.tif when you don't want any baked-in
+    satellite imagery — e.g. you have your own base layer in QGIS already.
+    """
+    H, W = class_map.shape
+    rgba = np.zeros((4, H, W), dtype=np.uint8)
+    fl = class_map == 1
+    pm = class_map == 2
+
+    rgba[0][fl] = _FLOOD_U8[0];     rgba[1][fl] = _FLOOD_U8[1];     rgba[2][fl] = _FLOOD_U8[2]
+    rgba[0][pm] = _PERMANENT_U8[0]; rgba[1][pm] = _PERMANENT_U8[1]; rgba[2][pm] = _PERMANENT_U8[2]
+    rgba[3][fl | pm] = 255   # fully opaque on water
+    # non-water alpha stays 0
+
+    out_profile = profile.copy()
+    out_profile.update({
+        "driver":   "GTiff",
+        "count":    4,
+        "dtype":    "uint8",
+        "compress": "deflate",
+        "photometric": "RGB",
+        "alpha":    "yes",
+    })
+    out_profile.pop("nodata", None)
+
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+    with rasterio.open(output_path, "w", **out_profile) as dst:
+        for i in range(4):
+            dst.write(rgba[i], i + 1)
+        dst.colorinterp = (
+            rasterio.enums.ColorInterp.red,
+            rasterio.enums.ColorInterp.green,
+            rasterio.enums.ColorInterp.blue,
+            rasterio.enums.ColorInterp.alpha,
+        )
+    print(f"[Viz] color-only TIF -> {output_path}  (RGBA, transparent non-water)")
 
 
 def save_geotiff(array: np.ndarray, profile: dict, output_path: str):

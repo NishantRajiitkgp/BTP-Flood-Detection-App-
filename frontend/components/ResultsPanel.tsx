@@ -10,18 +10,23 @@ import type { JobState } from "@/lib/types";
 
 interface Props {
   job: JobState | null;
+  landmaskOpacity: number;
+  onLandmaskOpacityChange: (v: number) => void;
 }
 
 const DOWNLOADS: Array<{ key: keyof NonNullable<JobState["files"]>; label: string }> = [
-  { key: "class_tif",      label: "Class map (TIF, 0/1/2)" },
-  { key: "flood_tif",      label: "Flood mask (TIF)" },
-  { key: "perm_tif",       label: "Permanent water (TIF)" },
-  { key: "flood_shp_zip",  label: "Flood polygons (SHP zip)" },
-  { key: "perm_shp_zip",   label: "Permanent polygons (SHP zip)" },
-  { key: "png",            label: "Visualization (PNG)" },
+  { key: "overlay_tif",        label: "Overlay map (TIF, satellite + red/blue)" },
+  { key: "overlay_color_tif",  label: "Overlay color (RGBA TIF, transparent non-water)" },
+  { key: "class_tif",          label: "Class map (TIF, 0/1/2)" },
+  { key: "flood_tif",          label: "Flood mask (TIF)" },
+  { key: "perm_tif",           label: "Permanent water (TIF)" },
+  { key: "flood_shp_zip",      label: "Flood polygons (SHP zip)" },
+  { key: "perm_shp_zip",       label: "Permanent polygons (SHP zip)" },
+  { key: "png",                label: "Report visualization (PNG)" },
+  { key: "overlay_water_png",  label: "Water overlay (PNG, red/blue only)" },
 ];
 
-export function ResultsPanel({ job }: Props) {
+export function ResultsPanel({ job, landmaskOpacity, onLandmaskOpacityChange }: Props) {
   if (!job) {
     return (
       <aside className="w-80 shrink-0 h-full overflow-y-auto bg-white/95
@@ -70,6 +75,36 @@ export function ResultsPanel({ job }: Props) {
           <CardTitle className="text-flood mb-1">Error</CardTitle>
           <p className="text-xs text-text whitespace-pre-wrap break-words">
             {error || message || "Prediction failed."}
+          </p>
+        </Card>
+      )}
+
+      {/* Landmask opacity slider — only when done. Affects ONLY the gray
+          non-water layer; red flood + blue permanent stay constant. */}
+      {status === "done" && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Land mask opacity</CardTitle>
+            <span className="text-[11px] text-muted">
+              {Math.round(landmaskOpacity * 100)}%
+            </span>
+          </CardHeader>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            step={5}
+            value={Math.round(landmaskOpacity * 100)}
+            onChange={(e) => onLandmaskOpacityChange(Number(e.target.value) / 100)}
+            className="w-full accent-accent"
+          />
+          <div className="flex justify-between text-[10px] text-muted mt-1">
+            <span>Pure satellite</span>
+            <span>Solid land mask</span>
+          </div>
+          <p className="text-[11px] text-muted mt-2 leading-snug">
+            Slider fades the gray non-water mask. Red flood &amp; blue permanent
+            water always stay fully opaque.
           </p>
         </Card>
       )}

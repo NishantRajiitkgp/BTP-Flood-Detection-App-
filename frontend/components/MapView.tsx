@@ -7,8 +7,10 @@ import {
   SATELLITE_STYLE,
   STREET_STYLE,
   INITIAL_VIEW,
-  PREDICTION_SOURCE_ID,
-  PREDICTION_LAYER_ID,
+  WATER_SOURCE_ID,
+  WATER_LAYER_ID,
+  LANDMASK_SOURCE_ID,
+  LANDMASK_LAYER_ID,
 } from "@/lib/map-config";
 import type { Bbox } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -17,7 +19,10 @@ type Basemap = "satellite" | "street";
 
 interface MapViewProps {
   onBboxDrawn?: (bbox: Bbox | null) => void;
-  predictionOverlay?: { url: string; bbox: Bbox } | null;
+  /** Two-layer overlay: water (red/blue, constant opacity) + landmask (gray, slider-controlled). */
+  predictionOverlay?: { waterUrl: string; landmaskUrl: string; bbox: Bbox } | null;
+  /** Opacity (0..1) applied ONLY to the gray non-water landmask layer. Water stays at 1.0. */
+  landmaskOpacity?: number;
   drawingEnabled: boolean;
 }
 
@@ -43,6 +48,7 @@ function bboxAsPolygon(lonMin: number, latMin: number, lonMax: number, latMax: n
 export function MapView({
   onBboxDrawn,
   predictionOverlay,
+  landmaskOpacity = 0.6,
   drawingEnabled,
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -162,33 +168,50 @@ export function MapView({
     };
   }, [drawingEnabled, onBboxDrawn]);
 
-  // -------- prediction overlay --------
+  // -------- prediction overlay (two layers: landmask underneath, water on top) --------
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
     const apply = () => {
-      if (map.getLayer(PREDICTION_LAYER_ID)) map.removeLayer(PREDICTION_LAYER_ID);
-      if (map.getSource(PREDICTION_SOURCE_ID)) map.removeSource(PREDICTION_SOURCE_ID);
+      // Tear down anything previously added (covers both new + legacy IDs)
+      [WATER_LAYER_ID, LANDMASK_LAYER_ID].forEach((id) => {
+        if (map.getLayer(id)) map.removeLayer(id);
+      });
+      [WATER_SOURCE_ID, LANDMASK_SOURCE_ID].forEach((id) => {
+        if (map.getSource(id)) map.removeSource(id);
+      });
 
       if (!predictionOverlay) return;
-      const { url, bbox } = predictionOverlay;
+      const { waterUrl, landmaskUrl, bbox } = predictionOverlay;
       const [lonMin, latMin, lonMax, latMax] = bbox;
+      const coords: [[number, number], [number, number], [number, number], [number, number]] = [
+        [lonMin, latMax], [lonMax, latMax],
+        [lonMax, latMin], [lonMin, latMin],
+      ];
 
-      map.addSource(PREDICTION_SOURCE_ID, {
-        type: "image",
-        url,
-        coordinates: [
-          [lonMin, latMax], [lonMax, latMax],
-          [lonMax, latMin], [lonMin, latMin],
-        ],
+      // Layer 1 (added first → renders BELOW): gray landmask, slider-controlled
+      map.addSource(LANDMASK_SOURCE_ID, {
+        type: "image", url: landmaskUrl, coordinates: coords,
       });
       map.addLayer({
-        id: PREDICTION_LAYER_ID,
+        id: LANDMASK_LAYER_ID,
         type: "raster",
-        source: PREDICTION_SOURCE_ID,
-        paint: { "raster-opacity": 0.7 },
+        source: LANDMASK_SOURCE_ID,
+        paint: { "raster-opacity": landmaskOpacity },
       });
+
+      // Layer 2 (added second → renders ON TOP): red/blue water, ALWAYS opaque
+      map.addSource(WATER_SOURCE_ID, {
+        type: "image", url: waterUrl, coordinates: coords,
+      });
+      map.addLayer({
+        id: WATER_LAYER_ID,
+        type: "raster",
+        source: WATER_SOURCE_ID,
+        paint: { "raster-opacity": 1.0 },
+      });
+
       map.fitBounds(
         [[lonMin, latMin], [lonMax, latMax]],
         { padding: 60, duration: 1500 },
@@ -197,7 +220,17 @@ export function MapView({
 
     if (map.isStyleLoaded()) apply();
     else map.once("load", apply);
+    // landmaskOpacity intentionally omitted — handled by dedicated effect below
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [predictionOverlay]);
+
+  // -------- live landmask opacity (water layer never changes) --------
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    if (!map.getLayer(LANDMASK_LAYER_ID)) return;
+    map.setPaintProperty(LANDMASK_LAYER_ID, "raster-opacity", landmaskOpacity);
+  }, [landmaskOpacity]);
 
   return (
     <div className="absolute inset-0">
