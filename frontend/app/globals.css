@@ -196,3 +196,18 @@ input:focus {
   border: 1px solid rgb(var(--c-border)) !important;
   border-radius: 12px !important;
 }
+
+/* ---------------------------------------------------------------------------
+   ANIMATIONS & EFFECTS
+   --------------------------------------------------------------------------- */
+.shimmer-bar {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--c-accent)) 0%,
+    rgb(var(--c-accent-grad-end)) 50%,
+    rgb(var(--c-accent)) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+  border-radius: 999px;
+}
