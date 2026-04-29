@@ -271,9 +271,3 @@ BTP new/
 | ngrok URL changes on restart | Free-tier behaviour | Pay $8/mo for a static domain, or use Cloudflare Tunnel (free) |
 
 ---
-
-# 📚 See also
-
-- [`CLAUDE.md`](CLAUDE.md) — architecture notes for code-assistant sessions
-- `IIT_Delhi.pdf` — the original DeepSARFlood paper
-- `NoteBook_final.ipynb` — Kaggle notebook for training/inference experiments
