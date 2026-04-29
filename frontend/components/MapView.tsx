@@ -13,6 +13,7 @@ import {
   LANDMASK_LAYER_ID,
 } from "@/lib/map-config";
 import type { Bbox } from "@/lib/types";
+import { Globe2, Map as MapIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Basemap = "satellite" | "street";
@@ -236,27 +237,55 @@ export function MapView({
     <div className="absolute inset-0">
       <div ref={containerRef} className="h-full w-full" />
 
-      {/* Floating basemap toggle */}
-      <div className="absolute top-4 left-4 inline-flex rounded-md border border-border bg-white shadow-sm">
-        {(["satellite", "street"] as const).map((bm) => (
-          <button
-            key={bm}
-            onClick={() => setBasemap(bm)}
-            className={cn(
-              "px-3 py-1.5 text-xs font-medium transition-colors",
-              basemap === bm ? "bg-accent text-white" : "text-text hover:bg-surface",
-              bm === "satellite" ? "rounded-l-md" : "rounded-r-md",
-            )}
-          >
-            {bm === "satellite" ? "Satellite" : "Street"}
-          </button>
-        ))}
+      {/* Floating basemap toggle — pill-style segment with sliding indicator */}
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 animate-slide-in-t">
+        <div
+          role="tablist"
+          aria-label="Basemap"
+          className="relative inline-flex glass-pill rounded-full p-1"
+        >
+          {/* sliding thumb */}
+          <span
+            aria-hidden
+            className="absolute top-1 bottom-1 rounded-full bg-canvas shadow-soft
+                       transition-all duration-300 ease-out-expo"
+            style={{
+              left: basemap === "satellite" ? "4px" : "calc(50% - 0px)",
+              width: "calc(50% - 4px)",
+            }}
+          />
+          {(["satellite", "street"] as const).map((bm) => (
+            <button
+              key={bm}
+              role="tab"
+              type="button"
+              aria-selected={basemap === bm}
+              onClick={() => setBasemap(bm)}
+              className={cn(
+                "relative z-10 inline-flex items-center gap-1.5 px-4 h-8 rounded-full",
+                "text-[11px] font-medium tracking-wide cursor-pointer transition-colors duration-200",
+                basemap === bm ? "text-ink" : "text-muted hover:text-text",
+              )}
+            >
+              {bm === "satellite" ? (
+                <Globe2 size={12} strokeWidth={1.75} />
+              ) : (
+                <MapIcon size={12} strokeWidth={1.75} />
+              )}
+              {bm === "satellite" ? "Satellite" : "Street"}
+            </button>
+          ))}
+        </div>
       </div>
 
+      {/* Drawing hint chip */}
       {drawingEnabled && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 px-3 py-1.5
-                        rounded-md bg-white shadow-sm border border-border
-                        text-xs text-text">
+        <div
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 px-4 py-2
+                     glass-pill rounded-full text-[12px] text-text
+                     flex items-center gap-2 animate-slide-in-t"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
           {hint}
         </div>
       )}

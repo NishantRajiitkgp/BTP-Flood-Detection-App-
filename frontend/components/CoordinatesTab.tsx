@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { Input } from "./ui/Input";
 import { Button } from "./ui/Button";
 import { todayISO } from "@/lib/utils";
@@ -12,10 +13,10 @@ interface Props {
 }
 
 export function CoordinatesTab({ onSubmit, busy }: Props) {
-  const [lonMin, setLonMin] = useState("80.5");
-  const [latMin, setLatMin] = useState("23.0");
-  const [lonMax, setLonMax] = useState("80.9");
-  const [latMax, setLatMax] = useState("23.4");
+  const [lonMin, setLonMin] = useState("-66.0");
+  const [latMin, setLatMin] = useState("-13.7");
+  const [lonMax, setLonMax] = useState("-65.95");
+  const [latMax, setLatMax] = useState("-13.65");
   const [date,   setDate]   = useState(todayISO());
   const [err,    setErr]    = useState<string | null>(null);
 
@@ -40,15 +41,26 @@ export function CoordinatesTab({ onSubmit, busy }: Props) {
   return (
     <div className="flex flex-col gap-3">
       <div className="grid grid-cols-2 gap-2">
-        <Input label="Longitude min" value={lonMin} onChange={(e) => setLonMin(e.target.value)} />
-        <Input label="Longitude max" value={lonMax} onChange={(e) => setLonMax(e.target.value)} />
-        <Input label="Latitude min"  value={latMin} onChange={(e) => setLatMin(e.target.value)} />
-        <Input label="Latitude max"  value={latMax} onChange={(e) => setLatMax(e.target.value)} />
+        <Input mono label="Lon min" value={lonMin} onChange={(e) => setLonMin(e.target.value)} />
+        <Input mono label="Lon max" value={lonMax} onChange={(e) => setLonMax(e.target.value)} />
+        <Input mono label="Lat min" value={latMin} onChange={(e) => setLatMin(e.target.value)} />
+        <Input mono label="Lat max" value={latMax} onChange={(e) => setLatMax(e.target.value)} />
       </div>
-      <Input label="Flood date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-      {err && <p className="text-xs text-flood">{err}</p>}
-      <Button onClick={handle} disabled={busy} fullWidth>
-        {busy ? "Predicting…" : "Predict floods"}
+      <Input
+        label="Flood date"
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        hint="Sentinel-1 looked up within ±6 days of this date."
+      />
+      {err && (
+        <p className="text-xs text-danger leading-snug bg-danger/5 border border-danger/20
+                       rounded-md px-3 py-2">
+          {err}
+        </p>
+      )}
+      <Button onClick={handle} disabled={busy} fullWidth size="lg">
+        {busy ? "Predicting…" : <>Predict floods <ArrowRight size={14} /></>}
       </Button>
     </div>
   );

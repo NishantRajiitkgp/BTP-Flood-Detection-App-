@@ -3,11 +3,19 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  /** "solid" = opaque card, "glass" = backdrop-blurred panel */
+  variant?: "solid" | "glass";
+}
+
+export function Card({ className, variant = "solid", ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-md border border-border bg-white p-4",
+        "rounded-xl p-4",
+        variant === "glass"
+          ? "glass relative glass-sheen"
+          : "bg-canvas/60 border border-border",
         className,
       )}
       {...props}
@@ -18,7 +26,7 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
 export function CardHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("mb-3 flex items-center justify-between", className)}
+      className={cn("mb-3 flex items-center justify-between gap-2", className)}
       {...props}
     />
   );
@@ -27,7 +35,10 @@ export function CardHeader({ className, ...props }: HTMLAttributes<HTMLDivElemen
 export function CardTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("text-sm font-semibold text-text", className)}
+      className={cn(
+        "text-[10px] font-semibold tracking-label uppercase text-muted",
+        className,
+      )}
       {...props}
     />
   );

@@ -96,8 +96,8 @@ export default function HomePage() {
   }, [job?.status, job?.id, job?.files, job?.stats?.bbox]);
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden flex">
-      {/* Map fills the viewport behind the panels */}
+    <main className="relative h-screen w-screen overflow-hidden bg-canvas">
+      {/* Map fills the viewport */}
       <div className="absolute inset-0">
         <MapView
           drawingEnabled={activeTab === "tile"}
@@ -107,8 +107,8 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Left input sidebar */}
-      <div className="relative z-10 h-full">
+      {/* Floating left panel */}
+      <div className="absolute top-4 left-4 bottom-4 z-10 flex">
         <InputPanel
           drawnBbox={drawnBbox}
           onPredictCoordinates={startCoordinates}
@@ -118,11 +118,8 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Spacer pushes results to the right */}
-      <div className="flex-1" />
-
-      {/* Right results sidebar */}
-      <div className="relative z-10 h-full">
+      {/* Floating right panel */}
+      <div className="absolute top-4 right-4 bottom-4 z-10 flex">
         <ResultsPanel
           job={job}
           landmaskOpacity={landmaskOpacity}
